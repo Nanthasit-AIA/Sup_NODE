@@ -1,0 +1,945 @@
+{
+  "cause_consequence_analysis_no_safeguards": [
+    {
+      "deviation": "No Flow / Less Flow",
+      "parameter": "Flow",
+      "guide_word": "No / Less",
+      "node_sections_covered": [
+        "Inlet line from Existing Process Unit / B-L to 100T-01",
+        "100T-01 tank inventory",
+        "Outlet/suction lines from 100T-01 to 100P-01A/B",
+        "100P-01A/B discharge to HPU",
+        "Minimum-flow recycle line back to 100T-01"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "FLOW-NL-C01",
+          "cause_source": "Existing Process Unit / B-L",
+          "cause": "No or reduced naphtha supply from the upstream existing process unit.",
+          "local_effect": "Reduced inflow to 100T-01.",
+          "propagated_consequence": "Tank inventory decreases while HPU transfer may continue; this can lead to low tank level, reduced suction head to 100P-01A/B, pump starvation, and reduced or interrupted HPU naphtha feed."
+        },
+        {
+          "cause_id": "FLOW-NL-C02",
+          "cause_source": "UV-0102-IN / inlet shutdown valve assembly",
+          "cause": "Inlet shutdown valve fails closed, closes spuriously, or fails to open.",
+          "local_effect": "Naphtha inlet flow to 100T-01 is reduced or stopped.",
+          "propagated_consequence": "100T-01 inventory decreases; 100P-01A/B may later experience low suction availability; HPU feed may become unstable or stop."
+        },
+        {
+          "cause_id": "FLOW-NL-C03",
+          "cause_source": "V-100T-IN-ISO / inlet manual isolation valve",
+          "cause": "Manual inlet isolation valve left closed or partially closed after maintenance or operation.",
+          "local_effect": "Restricted inlet flow to 100T-01.",
+          "propagated_consequence": "Gradual loss of tank inventory, possible low level, reduced pump suction head, and reduced HPU feed continuity."
+        },
+        {
+          "cause_id": "FLOW-NL-C04",
+          "cause_source": "100T-01 outlet / pump suction path",
+          "cause": "Outlet shutdown valve UV-0102-OUT, pump suction isolation valve, or suction line is closed, partially closed, blocked, or restricted.",
+          "local_effect": "Reduced flow from 100T-01 to 100P-01A/B.",
+          "propagated_consequence": "Transfer pumps may suffer inadequate suction, cavitation, starvation, or dry-running; HPU receives low or no naphtha flow."
+        },
+        {
+          "cause_id": "FLOW-NL-C05",
+          "cause_source": "100P-01A/B",
+          "cause": "Pump not running, pump trip, pump mechanical failure, coupling failure, motor failure, or loss of pump performance.",
+          "local_effect": "Reduced or no discharge flow from transfer pumps.",
+          "propagated_consequence": "HPU feed is reduced or interrupted; tank level may rise if inlet flow continues."
+        },
+        {
+          "cause_id": "FLOW-NL-C06",
+          "cause_source": "Pump discharge line to HPU",
+          "cause": "Pump discharge isolation valve closed, discharge line blocked, downstream HPU backpressure high, or common discharge header restricted.",
+          "local_effect": "Reduced forward flow to HPU.",
+          "propagated_consequence": "Low or no HPU feed; pumps may operate near shutoff/deadhead condition; discharge pressure may increase."
+        },
+        {
+          "cause_id": "FLOW-NL-C07",
+          "cause_source": "RO-0101 / minimum-flow recycle",
+          "cause": "Minimum-flow recycle path excessively open or hydraulic imbalance sends excessive flow back to 100T-01 instead of HPU.",
+          "local_effect": "Part of pump discharge returns to the tank instead of going to HPU.",
+          "propagated_consequence": "HPU receives less than required naphtha flow even though pumps are running."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Hydrogen Production Unit HPU"
+      ]
+    },
+    {
+      "deviation": "More Flow",
+      "parameter": "Flow",
+      "guide_word": "More",
+      "node_sections_covered": [
+        "Inlet line to 100T-01",
+        "Tank filling section",
+        "Pump discharge to HPU",
+        "Minimum-flow recycle"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "FLOW-MORE-C01",
+          "cause_source": "Existing Process Unit / B-L",
+          "cause": "Upstream process sends more naphtha than expected to 100T-01.",
+          "local_effect": "Excess tank inlet flow.",
+          "propagated_consequence": "Tank level rises faster than normal; potential high level, overfill, vapor displacement, and increased venting demand."
+        },
+        {
+          "cause_id": "FLOW-MORE-C02",
+          "cause_source": "UV-0102-IN / inlet valve line-up",
+          "cause": "Inlet shutdown valve or manual valve remains open when reduced or stopped inlet flow is required.",
+          "local_effect": "Continued tank filling.",
+          "propagated_consequence": "High tank level or overfill if pump-out does not match inlet flow."
+        },
+        {
+          "cause_id": "FLOW-MORE-C03",
+          "cause_source": "100P-01A/B",
+          "cause": "Both transfer pumps operate when only one pump is required, or pump capacity exceeds the HPU demand.",
+          "local_effect": "Higher-than-normal discharge flow to HPU.",
+          "propagated_consequence": "HPU may receive excessive naphtha feed; downstream process upset or high flow in HPU feed line may occur."
+        },
+        {
+          "cause_id": "FLOW-MORE-C04",
+          "cause_source": "RO-0101 / recycle line",
+          "cause": "Minimum-flow recycle is blocked or less open than intended, causing more pump discharge to go forward to HPU.",
+          "local_effect": "Reduced recycle flow and increased forward flow.",
+          "propagated_consequence": "Higher HPU feed flow and possible pump operation outside intended hydraulic balance."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Hydrogen Production Unit HPU"
+      ]
+    },
+    {
+      "deviation": "Reverse Flow",
+      "parameter": "Flow",
+      "guide_word": "Reverse",
+      "node_sections_covered": [
+        "HPU discharge boundary",
+        "Pump discharge check valves",
+        "Pump casing",
+        "Tank outlet/suction system",
+        "Minimum-flow recycle"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "FLOW-REV-C01",
+          "cause_source": "CV-100P-01A-DISCH / CV-100P-01B-DISCH",
+          "cause": "Pump discharge check valve fails open, leaks, or is stuck open while HPU/discharge header pressure is higher than pump/tank side pressure.",
+          "local_effect": "Backflow through stopped or low-pressure pump path.",
+          "propagated_consequence": "Reverse rotation or mechanical damage to 100P-01A/B; possible backflow toward 100T-01; HPU feed instability."
+        },
+        {
+          "cause_id": "FLOW-REV-C02",
+          "cause_source": "Wrong line-up around pump discharge or recycle line",
+          "cause": "Manual valves incorrectly aligned, allowing discharge header or recycle path to backflow toward tank/pump suction.",
+          "local_effect": "Flow direction reverses in part of the transfer system.",
+          "propagated_consequence": "Unintended tank filling, pump reverse flow, unstable HPU supply, or contamination/back-mixing into 100T-01."
+        },
+        {
+          "cause_id": "FLOW-REV-C03",
+          "cause_source": "100P-01A/B stopped while downstream pressure remains high",
+          "cause": "Pump is stopped or tripped while downstream HPU/discharge pressure is higher than upstream tank-side pressure.",
+          "local_effect": "Pressure gradient favors reverse flow.",
+          "propagated_consequence": "Backflow through pump if check valve does not hold; possible pump damage and tank level increase."
+        }
+      ],
+      "main_consequence_targets": [
+        "100P-01A",
+        "100P-01B",
+        "100T-01",
+        "Hydrogen Production Unit HPU"
+      ]
+    },
+    {
+      "deviation": "High Pressure",
+      "parameter": "Pressure",
+      "guide_word": "More",
+      "node_sections_covered": [
+        "100T-01 vapor space",
+        "Nitrogen blanketing line",
+        "Tank vent line to activated carbon canister",
+        "Pump discharge line",
+        "Blocked-in liquid sections"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "PRESS-HIGH-C01",
+          "cause_source": "PCV-0101 / nitrogen blanketing",
+          "cause": "Nitrogen in-breathing control valve PCV-0101 fails open or nitrogen pressure is excessive.",
+          "local_effect": "Excess nitrogen enters 100T-01 vapor space.",
+          "propagated_consequence": "Tank vapor pressure increases; possible vapor release through relief/vent paths and potential tank mechanical stress."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C02",
+          "cause_source": "PCV-0102 / vent path / AC-0101",
+          "cause": "Out-breathing valve PCV-0102 fails closed, vent line blocked, or activated carbon canister path restricted.",
+          "local_effect": "Tank vapor cannot vent normally.",
+          "propagated_consequence": "Tank pressure increases during filling, heating, or vapor generation; possible tank overpressure."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C03",
+          "cause_source": "100T-01 liquid overfill",
+          "cause": "Excess inflow or loss of outflow causes high/high-high level, reducing vapor space.",
+          "local_effect": "Vapor space compression and increased venting demand.",
+          "propagated_consequence": "Tank pressure rise, liquid carryover to vent system, possible release to atmosphere or bund."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C04",
+          "cause_source": "100P-01A/B discharge line",
+          "cause": "Downstream HPU line blocked or discharge valve closed while pump continues running.",
+          "local_effect": "Pump discharge pressure increases.",
+          "propagated_consequence": "Pump deadheading, overheating, line overpressure, seal damage, or loss of HPU feed."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C05",
+          "cause_source": "Trapped liquid section / thermal expansion",
+          "cause": "Liquid naphtha is trapped between closed valves and heated by ambient/fire/solar heat.",
+          "local_effect": "Thermal expansion increases pressure in blocked-in liquid piping.",
+          "propagated_consequence": "Potential piping overpressure, flange leakage, PSV lifting, or naphtha release."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C06",
+          "cause_source": "External fire exposure",
+          "cause": "Fire or abnormal external heating increases liquid/vapor temperature and vapor generation.",
+          "local_effect": "Rapid tank pressure increase.",
+          "propagated_consequence": "Tank relief demand, vapor/naphtha release, escalation risk, and possible emergency venting."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Naphtha transfer piping",
+        "Vent/relief system"
+      ]
+    },
+    {
+      "deviation": "Low Pressure",
+      "parameter": "Pressure",
+      "guide_word": "Less",
+      "node_sections_covered": [
+        "100T-01 vapor space",
+        "Nitrogen blanketing line",
+        "Tank out-breathing/vent path",
+        "Pump-out operation"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "PRESS-LOW-C01",
+          "cause_source": "PCV-0101 / nitrogen supply",
+          "cause": "Nitrogen supply unavailable, PCV-0101 fails closed, or nitrogen blanketing line is blocked.",
+          "local_effect": "Insufficient in-breathing to replace liquid withdrawal or vapor contraction.",
+          "propagated_consequence": "Tank vapor pressure falls below normal; possible tank vacuum, roof/internal floating roof damage, or air ingress."
+        },
+        {
+          "cause_id": "PRESS-LOW-C02",
+          "cause_source": "PCV-0102 / vent path",
+          "cause": "Out-breathing valve PCV-0102 stuck open or vent path allows excessive vapor release.",
+          "local_effect": "Tank vapor pressure decreases.",
+          "propagated_consequence": "Vacuum tendency, oxygen ingress risk, and increased flammable atmosphere potential in the vapor space."
+        },
+        {
+          "cause_id": "PRESS-LOW-C03",
+          "cause_source": "100P-01A/B pump-out",
+          "cause": "Rapid pump-out from 100T-01 without sufficient nitrogen make-up.",
+          "local_effect": "Liquid volume decreases faster than vapor space is replenished.",
+          "propagated_consequence": "Tank vacuum, internal roof damage, possible pump suction instability, and air ingress."
+        },
+        {
+          "cause_id": "PRESS-LOW-C04",
+          "cause_source": "Cooling or vapor condensation",
+          "cause": "Temperature decrease causes vapor condensation in the tank vapor space.",
+          "local_effect": "Vapor pressure decreases.",
+          "propagated_consequence": "Tank vacuum condition and possible mechanical stress on the tank roof/shell."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "Nitrogen blanketing system",
+        "Vent system"
+      ]
+    },
+    {
+      "deviation": "High Level",
+      "parameter": "Level",
+      "guide_word": "More",
+      "node_sections_covered": [
+        "100T-01 tank inventory",
+        "Inlet line",
+        "Outlet/pump transfer line",
+        "Vent system"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "LEVEL-HIGH-C01",
+          "cause_source": "Inlet flow from Existing Process Unit / B-L",
+          "cause": "Inlet flow continues or exceeds normal while outflow to HPU is reduced.",
+          "local_effect": "Tank liquid level rises.",
+          "propagated_consequence": "High level or overfill of 100T-01; possible liquid release, vapor displacement, and high pressure in tank vapor space."
+        },
+        {
+          "cause_id": "LEVEL-HIGH-C02",
+          "cause_source": "100P-01A/B",
+          "cause": "Transfer pumps stopped, unavailable, or underperforming while inlet flow continues.",
+          "local_effect": "Outflow from tank decreases.",
+          "propagated_consequence": "Tank inventory accumulates; high level, overfill, and possible feed interruption to HPU."
+        },
+        {
+          "cause_id": "LEVEL-HIGH-C03",
+          "cause_source": "UV-0102-OUT / pump suction path",
+          "cause": "Outlet valve closed or suction/discharge path blocked.",
+          "local_effect": "Naphtha cannot be transferred from tank to pumps/HPU.",
+          "propagated_consequence": "Tank level rises if inlet continues; potential overfill and vapor release."
+        },
+        {
+          "cause_id": "LEVEL-HIGH-C04",
+          "cause_source": "Reverse flow from HPU/discharge header",
+          "cause": "Reverse flow through failed pump discharge check valve or wrong line-up.",
+          "local_effect": "Additional liquid returns toward tank.",
+          "propagated_consequence": "Unexpected tank level increase and possible overfill."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "Vent/activated carbon system",
+        "Bund/OWS/CSS area"
+      ]
+    },
+    {
+      "deviation": "Low Level",
+      "parameter": "Level",
+      "guide_word": "Less",
+      "node_sections_covered": [
+        "100T-01 tank inventory",
+        "Inlet line",
+        "Outlet/suction line",
+        "Drain lines",
+        "Pump suction"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "LEVEL-LOW-C01",
+          "cause_source": "Existing Process Unit / B-L",
+          "cause": "Upstream feed stopped or reduced.",
+          "local_effect": "Tank receives less naphtha than expected.",
+          "propagated_consequence": "Tank level decreases; 100P-01A/B suction head decreases; HPU feed may be reduced or interrupted."
+        },
+        {
+          "cause_id": "LEVEL-LOW-C02",
+          "cause_source": "UV-0102-IN / inlet isolation",
+          "cause": "Inlet shutdown valve or manual isolation valve closed when feed is required.",
+          "local_effect": "Tank inflow stops.",
+          "propagated_consequence": "Tank level falls while transfer pumps continue; pump dry-running, cavitation, or HPU feed loss may occur."
+        },
+        {
+          "cause_id": "LEVEL-LOW-C03",
+          "cause_source": "100P-01A/B",
+          "cause": "Pump-out rate exceeds inlet make-up rate.",
+          "local_effect": "Inventory is drawn down faster than replenished.",
+          "propagated_consequence": "Low tank level, low suction head, pump starvation/dry-running, and HPU feed instability."
+        },
+        {
+          "cause_id": "LEVEL-LOW-C04",
+          "cause_source": "OWS/CSS drain valves or tank leakage",
+          "cause": "Drain valve left open, drain path leakage, or tank/piping leak.",
+          "local_effect": "Unintended loss of naphtha inventory.",
+          "propagated_consequence": "Low level, possible hydrocarbon release to drain/bund, pump suction loss, and HPU feed interruption."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Hydrogen Production Unit HPU",
+        "OWS/CSS"
+      ]
+    },
+    {
+      "deviation": "High Temperature",
+      "parameter": "Temperature",
+      "guide_word": "More",
+      "node_sections_covered": [
+        "100T-01 tank liquid",
+        "Tank vapor space",
+        "Pump discharge/recycle line",
+        "Blocked-in liquid sections"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "TEMP-HIGH-C01",
+          "cause_source": "Upstream naphtha feed",
+          "cause": "Incoming naphtha temperature is higher than normal or above intended operating temperature.",
+          "local_effect": "Tank liquid temperature increases.",
+          "propagated_consequence": "Higher vapor pressure, increased venting, tank pressure rise, increased vapor emissions, and possible pump NPSH reduction."
+        },
+        {
+          "cause_id": "TEMP-HIGH-C02",
+          "cause_source": "External environment / fire exposure",
+          "cause": "High ambient temperature, solar heating, or external fire exposure.",
+          "local_effect": "Tank and liquid temperature increase.",
+          "propagated_consequence": "Vapor generation and pressure rise in 100T-01; possible relief/vent demand and flammable vapor release."
+        },
+        {
+          "cause_id": "TEMP-HIGH-C03",
+          "cause_source": "100P-01A/B deadheading or excessive recycle",
+          "cause": "Pump operates at very low forward flow, deadheads, or recirculates excessively.",
+          "local_effect": "Pump energy is converted into heat in the liquid.",
+          "propagated_consequence": "Higher discharge/recycle temperature, pump damage, vapor formation, cavitation risk, and possible high pressure in trapped sections."
+        },
+        {
+          "cause_id": "TEMP-HIGH-C04",
+          "cause_source": "Blocked-in liquid section",
+          "cause": "Naphtha trapped between closed valves and heated.",
+          "local_effect": "Thermal expansion and temperature increase in trapped liquid.",
+          "propagated_consequence": "Local high pressure, leakage, or relief demand."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Naphtha transfer piping",
+        "Vent/relief system"
+      ]
+    },
+    {
+      "deviation": "Low Temperature",
+      "parameter": "Temperature",
+      "guide_word": "Less",
+      "node_sections_covered": [
+        "100T-01 tank liquid",
+        "Tank vapor space",
+        "Pump suction/discharge lines"
+      ],
+      "possible_causes": [
+        {
+          "cause_id": "TEMP-LOW-C01",
+          "cause_source": "Upstream naphtha feed",
+          "cause": "Incoming naphtha temperature is lower than normal.",
+          "local_effect": "Tank liquid temperature decreases.",
+          "propagated_consequence": "Reduced vapor pressure, possible tank vacuum tendency from vapor contraction, increased liquid viscosity, and possible reduction in pumpability."
+        },
+        {
+          "cause_id": "TEMP-LOW-C02",
+          "cause_source": "Ambient cooling",
+          "cause": "Low ambient temperature or abnormal cooling of stagnant naphtha in tank/piping.",
+          "local_effect": "Temperature in tank or transfer piping decreases.",
+          "propagated_consequence": "Possible low pressure/vacuum tendency in vapor space, sluggish flow, pump load increase, or operation outside design temperature if below -8 °C."
+        },
+        {
+          "cause_id": "TEMP-LOW-C03",
+          "cause_source": "Excessive vapor release / evaporation cooling",
+          "cause": "Excessive venting or vaporization cools the remaining liquid/vapor space.",
+          "local_effect": "Local temperature decreases.",
+          "propagated_consequence": "Pressure drop in vapor space and possible air ingress if tank pressure falls below atmospheric."
+        }
+      ],
+      "main_consequence_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "Nitrogen blanketing / vent system"
+      ]
+    }
+  ],
+  "related_ipls_and_safeguards": [
+    {
+      "tag": "LT-0101",
+      "source_category": "instrument_field",
+      "type": "level transmitter",
+      "related_deviations": [
+        "High Level",
+        "Low Level",
+        "No Flow / Less Flow",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Detects inventory changes in 100T-01 caused by inlet/outlet flow imbalance.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Safeguard/monitoring layer; formal IPL credit requires independence and reliability verification."
+    },
+    {
+      "tag": "LT-0102",
+      "source_category": "instrument_field",
+      "type": "level transmitter",
+      "related_deviations": [
+        "High Level",
+        "Low Level",
+        "No Flow / Less Flow",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Provides level signal associated with high-high and low-low level protection logic.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Safeguard/monitoring layer; may support IPL if independent of initiating cause and final element."
+    },
+    {
+      "tag": "LI-0101A / LI-0102A / LI-0102B",
+      "source_category": "instrument_field",
+      "type": "level indication",
+      "related_deviations": [
+        "High Level",
+        "Low Level"
+      ],
+      "related_cause_consequence_logic": "Provides operator visibility of tank level deviation.",
+      "protected_or_monitored_targets": [
+        "100T-01"
+      ],
+      "classification_note": "Operator safeguard/monitoring only, not normally credited as standalone IPL without defined operator response time and alarm management."
+    },
+    {
+      "tag": "LAH-0102",
+      "source_category": "instrument_field",
+      "type": "level alarm high",
+      "related_deviations": [
+        "High Level",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Alerts operator to high tank level caused by excessive inlet flow, loss of pump-out, or reverse flow.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "Vent system"
+      ],
+      "classification_note": "Alarm safeguard; formal IPL credit depends on alarm independence, priority, response time, and operator action."
+    },
+    {
+      "tag": "LAL-0102",
+      "source_category": "instrument_field",
+      "type": "level alarm low",
+      "related_deviations": [
+        "Low Level",
+        "No Flow / Less Flow"
+      ],
+      "related_cause_consequence_logic": "Alerts operator to falling tank level caused by loss of inlet flow, excessive pump-out, drain leakage, or tank leakage.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Alarm safeguard; formal IPL credit depends on alarm management and operator response."
+    },
+    {
+      "tag": "LSHH-0102",
+      "source_category": "instrument_field",
+      "type": "level switch high-high",
+      "related_deviations": [
+        "High Level",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Detects high-high tank level and initiates high-level protection logic.",
+      "protected_or_monitored_targets": [
+        "100T-01"
+      ],
+      "classification_note": "Candidate IPL input if independent, proof-tested, and credited in safety requirement specification."
+    },
+    {
+      "tag": "IS-09",
+      "source_category": "instrument_field",
+      "type": "safety interlock",
+      "related_deviations": [
+        "High Level",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "High-high level protection closes the inlet shutdown valve to stop additional filling of 100T-01.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "Inlet line"
+      ],
+      "classification_note": "Candidate IPL/SIS function for overfill prevention if independent and designed to required SIL or reliability target."
+    },
+    {
+      "tag": "LSLL-0102",
+      "source_category": "instrument_field",
+      "type": "level switch low-low",
+      "related_deviations": [
+        "Low Level",
+        "No Flow / Less Flow"
+      ],
+      "related_cause_consequence_logic": "Detects low-low level in 100T-01 before pump dry-running condition becomes severe.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Candidate IPL input for pump dry-running protection if independent and proof-tested."
+    },
+    {
+      "tag": "IS-10",
+      "source_category": "instrument_field",
+      "type": "safety interlock",
+      "related_deviations": [
+        "Low Level",
+        "No Flow / Less Flow",
+        "Low Pressure"
+      ],
+      "related_cause_consequence_logic": "Trips 100P-01A/B and closes outlet shutdown valve to prevent pump dry-running when tank level is too low.",
+      "protected_or_monitored_targets": [
+        "100P-01A",
+        "100P-01B",
+        "100T-01"
+      ],
+      "classification_note": "Candidate IPL/SIS function for pump protection if independent from the initiating cause."
+    },
+    {
+      "tag": "FT-0101",
+      "source_category": "instrument_field",
+      "type": "flow transmitter",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "More Flow",
+        "Reverse Flow"
+      ],
+      "related_cause_consequence_logic": "Measures flow in the common naphtha discharge line to HPU.",
+      "protected_or_monitored_targets": [
+        "HPU feed line",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Monitoring/safeguard instrument. Reverse-flow detection is not confirmed unless the transmitter is configured for bidirectional measurement."
+    },
+    {
+      "tag": "FI-0101",
+      "source_category": "instrument_field",
+      "type": "flow indicator",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Indicates abnormal HPU feed flow from pump discharge.",
+      "protected_or_monitored_targets": [
+        "HPU feed line"
+      ],
+      "classification_note": "Operator monitoring safeguard, not a standalone IPL unless paired with alarm and defined operator response."
+    },
+    {
+      "tag": "FY-0101",
+      "source_category": "instrument_field",
+      "type": "flow relay / signal converter",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "More Flow"
+      ],
+      "related_cause_consequence_logic": "Processes or transmits flow signal associated with FT/FI-0101.",
+      "protected_or_monitored_targets": [
+        "HPU feed line"
+      ],
+      "classification_note": "Signal processing element; IPL credit depends on complete loop design."
+    },
+    {
+      "tag": "PG-0101",
+      "source_category": "instrument_field",
+      "type": "tank pressure gauge",
+      "related_deviations": [
+        "High Pressure",
+        "Low Pressure",
+        "High Temperature",
+        "Low Temperature"
+      ],
+      "related_cause_consequence_logic": "Provides local indication of tank vapor pressure affected by blanketing, venting, heating, cooling, or pump-out.",
+      "protected_or_monitored_targets": [
+        "100T-01"
+      ],
+      "classification_note": "Monitoring safeguard; not normally IPL by itself."
+    },
+    {
+      "tag": "PG-0101A / PG-0101B",
+      "source_category": "instrument_field",
+      "type": "pump discharge pressure gauges",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "High Pressure",
+        "Reverse Flow"
+      ],
+      "related_cause_consequence_logic": "Indicates abnormal discharge pressure from 100P-01A/B, including blocked discharge, deadheading, or backpressure conditions.",
+      "protected_or_monitored_targets": [
+        "100P-01A",
+        "100P-01B",
+        "Pump discharge piping"
+      ],
+      "classification_note": "Monitoring safeguard."
+    },
+    {
+      "tag": "TI-0101",
+      "source_category": "instrument_field",
+      "type": "temperature indicator",
+      "related_deviations": [
+        "High Temperature",
+        "Low Temperature",
+        "High Pressure",
+        "Low Pressure"
+      ],
+      "related_cause_consequence_logic": "Indicates naphtha temperature affecting vapor pressure, pressure deviation, pumpability, and thermal expansion.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A/B discharge line"
+      ],
+      "classification_note": "Monitoring safeguard."
+    },
+    {
+      "tag": "TAH-0101",
+      "source_category": "instrument_field",
+      "type": "temperature alarm high",
+      "related_deviations": [
+        "High Temperature",
+        "High Pressure"
+      ],
+      "related_cause_consequence_logic": "Alerts high temperature condition that can increase vapor pressure, venting demand, and pump cavitation risk.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "Transfer piping"
+      ],
+      "classification_note": "Alarm safeguard; IPL credit depends on independence and operator response."
+    },
+    {
+      "tag": "TAL-0101",
+      "source_category": "instrument_field",
+      "type": "temperature alarm low",
+      "related_deviations": [
+        "Low Temperature",
+        "Low Pressure"
+      ],
+      "related_cause_consequence_logic": "Alerts low temperature condition that can reduce vapor pressure and affect pumpability.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "Transfer piping"
+      ],
+      "classification_note": "Alarm safeguard."
+    },
+    {
+      "tag": "IS-28",
+      "source_category": "instrument_field",
+      "type": "emergency shutdown interlock",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "More Flow",
+        "High Pressure",
+        "High Level",
+        "Low Level",
+        "Reverse Flow"
+      ],
+      "related_cause_consequence_logic": "Manual emergency shutdown closes inlet/outlet shutdown valves and trips 100P-01A/B.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B",
+        "HPU feed line"
+      ],
+      "classification_note": "Emergency isolation safeguard; IPL credit depends on independence, human action assumptions, and shutdown system design."
+    },
+    {
+      "tag": "HS-0101A / HS-0101B",
+      "source_category": "instrument_field",
+      "type": "manual emergency shutdown hand switches",
+      "related_deviations": [
+        "High Pressure",
+        "High Level",
+        "No Flow / Less Flow",
+        "Reverse Flow",
+        "Emergency isolation scenarios"
+      ],
+      "related_cause_consequence_logic": "Manual initiation of IS-28 from safe/outside bund locations.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Manual safeguard; formal IPL credit requires response time and accessibility validation."
+    },
+    {
+      "tag": "UY-0101",
+      "source_category": "instrument_field",
+      "type": "inlet shutdown valve solenoid / relay",
+      "related_deviations": [
+        "High Level",
+        "More Flow",
+        "No Flow / Less Flow"
+      ],
+      "related_cause_consequence_logic": "Acts on inlet shutdown valve command from IS-09 or IS-28.",
+      "protected_or_monitored_targets": [
+        "Inlet line",
+        "100T-01"
+      ],
+      "classification_note": "Final-element actuation component; can be part of IPL loop if independent and proof-tested."
+    },
+    {
+      "tag": "UY-0102",
+      "source_category": "instrument_field",
+      "type": "outlet shutdown valve solenoid / relay",
+      "related_deviations": [
+        "Low Level",
+        "No Flow / Less Flow",
+        "Emergency isolation"
+      ],
+      "related_cause_consequence_logic": "Acts on outlet shutdown valve command from IS-10 or IS-28.",
+      "protected_or_monitored_targets": [
+        "Outlet line",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Final-element actuation component."
+    },
+    {
+      "tag": "ZSO-0101 / ZSC-0101 / ZAO-0101 / ZAC-0101",
+      "source_category": "instrument_field",
+      "type": "inlet shutdown valve position feedback and alarm/status",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "More Flow",
+        "High Level"
+      ],
+      "related_cause_consequence_logic": "Confirms whether inlet shutdown valve is open or closed.",
+      "protected_or_monitored_targets": [
+        "Inlet line",
+        "100T-01"
+      ],
+      "classification_note": "Diagnostic safeguard; helps detect valve misposition but not usually a standalone IPL."
+    },
+    {
+      "tag": "ZSO-0102 / ZSC-0102 / ZAO-0102 / ZAC-0102",
+      "source_category": "instrument_field",
+      "type": "outlet shutdown valve position feedback and alarm/status",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "Low Level",
+        "Reverse Flow"
+      ],
+      "related_cause_consequence_logic": "Confirms whether outlet shutdown valve is open or closed.",
+      "protected_or_monitored_targets": [
+        "Outlet line",
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Diagnostic safeguard."
+    },
+    {
+      "tag": "PCV-0101",
+      "source_category": "valve/protective-control-device",
+      "type": "nitrogen in-breathing pressure control valve",
+      "related_deviations": [
+        "High Pressure",
+        "Low Pressure",
+        "Low Level",
+        "Low Temperature"
+      ],
+      "related_cause_consequence_logic": "Maintains nitrogen blanketing pressure during tank breathing.",
+      "protected_or_monitored_targets": [
+        "100T-01 vapor space"
+      ],
+      "classification_note": "Basic process control/safeguard. Not normally an IPL unless specifically designed independent of BPCS initiating causes."
+    },
+    {
+      "tag": "PCV-0102",
+      "source_category": "valve/protective-control-device",
+      "type": "tank out-breathing pressure control valve",
+      "related_deviations": [
+        "High Pressure",
+        "Low Pressure",
+        "High Level",
+        "High Temperature"
+      ],
+      "related_cause_consequence_logic": "Provides controlled tank out-breathing through activated carbon canister.",
+      "protected_or_monitored_targets": [
+        "100T-01",
+        "AC-0101"
+      ],
+      "classification_note": "Basic process control/safeguard."
+    },
+    {
+      "tag": "PVV-0102",
+      "source_category": "valve/protective-device",
+      "type": "pressure-vacuum relief valve",
+      "related_deviations": [
+        "High Pressure",
+        "Low Pressure",
+        "High Temperature",
+        "Low Temperature"
+      ],
+      "related_cause_consequence_logic": "Provides secondary tank pressure/vacuum protection.",
+      "protected_or_monitored_targets": [
+        "100T-01"
+      ],
+      "classification_note": "Candidate independent protection layer for tank overpressure/vacuum if sized, maintained, and independent."
+    },
+    {
+      "tag": "EH-0101",
+      "source_category": "valve/protective-device",
+      "type": "emergency hatch",
+      "related_deviations": [
+        "High Pressure",
+        "High Temperature",
+        "External fire"
+      ],
+      "related_cause_consequence_logic": "Provides emergency venting for abnormal/fire scenarios.",
+      "protected_or_monitored_targets": [
+        "100T-01"
+      ],
+      "classification_note": "Emergency relief safeguard; IPL credit depends on design basis."
+    },
+    {
+      "tag": "PSV-0101",
+      "source_category": "valve/protective-device",
+      "type": "pressure safety valve / thermal relief valve",
+      "related_deviations": [
+        "High Pressure",
+        "High Temperature"
+      ],
+      "related_cause_consequence_logic": "Relieves thermal expansion pressure from trapped liquid in transfer piping.",
+      "protected_or_monitored_targets": [
+        "Blocked-in liquid piping",
+        "Naphtha transfer line"
+      ],
+      "classification_note": "Candidate IPL for blocked-in liquid thermal expansion if properly sized and maintained."
+    },
+    {
+      "tag": "RO-0101",
+      "source_category": "valve/protective-hydraulic-device",
+      "type": "restriction orifice / minimum-flow recycle device",
+      "related_deviations": [
+        "No Flow / Less Flow",
+        "High Temperature",
+        "High Pressure"
+      ],
+      "related_cause_consequence_logic": "Maintains continuous minimum recycle flow to protect 100P-01A/B from low-flow operation.",
+      "protected_or_monitored_targets": [
+        "100P-01A",
+        "100P-01B"
+      ],
+      "classification_note": "Pump protection safeguard; IPL status depends on whether it is independent and credited in design."
+    },
+    {
+      "tag": "CV-100P-01A-DISCH / CV-100P-01B-DISCH",
+      "source_category": "valve/protective-device",
+      "type": "pump discharge check valves",
+      "related_deviations": [
+        "Reverse Flow"
+      ],
+      "related_cause_consequence_logic": "Prevents reverse flow from HPU/discharge header through stopped transfer pumps.",
+      "protected_or_monitored_targets": [
+        "100P-01A",
+        "100P-01B",
+        "100T-01"
+      ],
+      "classification_note": "Reverse-flow safeguard; not always credited as IPL unless reliability and independence are demonstrated."
+    }
+  ],
+  "reasoning_recheck": {
+    "check_1_node_boundary": "All deviations were evaluated across the full boundary from Existing Process Unit / B-L to 100T-01, 100P-01A/B, HPU, recycle, blanketing, vent, relief, and drain paths.",
+    "check_2_cause_vs_consequence": "Cause source and consequence target were kept separate. A cause at a valve, such as UV-0102-IN, can propagate to 100T-01 inventory, 100P-01A/B suction, and HPU feed.",
+    "check_3_no_valve_as_endpoint": "Valves and instruments are not used as from_id/to_id endpoints. They are used as cause_source, safeguards, or instruments acting on the node.",
+    "check_4_safeguard_separation": "The first field lists causes and consequences only. IPLs and safeguards are listed only after the cause-consequence pass.",
+    "check_5_formal_ipl_warning": "Items are listed as candidate IPLs/safeguards from the P&ID. Formal IPL credit requires independence, effectiveness, proof testing, response time, and reliability verification."
+  }
+}

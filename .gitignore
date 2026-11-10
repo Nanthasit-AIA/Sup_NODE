@@ -1,0 +1,43 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage/
+
+# Python virtual environment and bytecode
+backend/snlib01/
+__pycache__/
+*.py[cod]
+
+# Windows / editor files
+Thumbs.db
+desktop.ini
+.vscode/
+
+# Claude Code personal settings (launch.json is shared)
+.claude/settings.local.json
+
+# SCG Chemicals original documents: not to be copied without written permission
+engineer_docs/

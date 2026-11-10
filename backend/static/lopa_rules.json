@@ -1,0 +1,86 @@
+{
+  "source": "SCG Chemicals HAZOP - LOPA Guideline SD-PS-G-0209 (Appendix B Tables B1/B2, Appendix G risk matrix)",
+  "risk_matrix": {
+    "note": "rows = frequency category F-1..F-5, columns = consequence category C-1..C-5, value = risk rank 1..4 (I..IV)",
+    "rows": [
+      [4, 2, 2, 1, 1],
+      [4, 3, 2, 2, 1],
+      [4, 4, 3, 2, 1],
+      [4, 4, 4, 3, 2],
+      [4, 4, 4, 4, 3]
+    ]
+  },
+  "frequency_categories": [
+    { "f": 1, "label": "Very likely to occur", "range": ">= 1e-1 /yr" },
+    { "f": 2, "label": "Likely to occur at least once in the lifetime of the process", "range": "< 1e-1 to >= 1e-2 /yr" },
+    { "f": 3, "label": "Unlikely to occur in the lifetime of the process, but possible", "range": "< 1e-2 to >= 1e-3 /yr" },
+    { "f": 4, "label": "Very unlikely - not expected", "range": "< 1e-3 to >= 1e-4 /yr" },
+    { "f": 5, "label": "Extremely unlikely - not realistically expected to occur", "range": "< 1e-4 /yr" }
+  ],
+  "consequence_categories": [
+    { "c": 1, "safety": "Minor injury", "environment": "Minor damage", "property": "Minor damage or 0-10,000 USD" },
+    { "c": 2, "safety": "Medical treatment", "environment": "Some damage", "property": "10,000-100,000 USD loss" },
+    { "c": 3, "safety": "Time lost injury", "environment": "Some damage, media coverage", "property": "100,000-1,000,000 USD loss" },
+    { "c": 4, "safety": "Fatal injury or irreversible health effects", "environment": "Significant damage, media coverage", "property": "1,000,000-10,000,000 USD loss" },
+    { "c": 5, "safety": "Multiple fatalities", "environment": "Severe environmental damage", "property": "> 10,000,000 USD loss" }
+  ],
+  "risk_ranks": [
+    { "r": 1, "label": "I", "name": "Intolerable", "action": "Develop recommendations to reduce risk to category III" },
+    { "r": 2, "label": "II", "name": "Undesirable", "action": "Develop recommendations to reduce risk to category III" },
+    { "r": 3, "label": "III", "name": "Tolerable with controls", "action": "Team may make recommendations to reduce risk" },
+    { "r": 4, "label": "IV", "name": "Tolerable as is", "action": "Opportunity for improvement" }
+  ],
+  "initiating_events": [
+    { "id": "bpcs_loop", "label": "BPCS instrument loop failure", "per_year": 0.1 },
+    { "id": "instrument", "label": "Instrument failure", "per_year": 0.1 },
+    { "id": "regulator", "label": "Regulator failure", "per_year": 0.1 },
+    { "id": "valve", "label": "Valve failure", "per_year": 0.1 },
+    { "id": "cooling_water", "label": "Cooling water failure", "per_year": 0.1 },
+    { "id": "power_loss", "label": "Loss of power (redundant power supplies)", "per_year": 0.1 },
+    { "id": "loading_hose", "label": "Unloading/loading hose failure (annual inspection and replacement)", "per_year": 0.1 },
+    { "id": "turbine_overspeed", "label": "Turbine/diesel engine over speed with casing breach", "per_year": 0.0001 },
+    { "id": "pump_overspeed", "label": "Compressor / pump over-speed", "per_year": 0.1 },
+    { "id": "rotating_equipment", "label": "Pumps and other rotating equipment failure", "per_year": 0.1 },
+    { "id": "pump_seal", "label": "Pump seal failure", "per_year": 0.1 },
+    { "id": "hose_leak", "label": "Hose failure leak and rupture", "per_year": 0.1 },
+    { "id": "gasket", "label": "Gasket/packing blowout", "per_year": 0.01 },
+    { "id": "fixed_equipment", "label": "Fixed equipment failure (e.g. exchanger tube failure)", "per_year": 0.01 },
+    { "id": "safety_valve_spurious", "label": "Safety valve opens spuriously", "per_year": 0.01 },
+    { "id": "psv_failure", "label": "PSV failure", "per_year": 0.01 },
+    { "id": "check_valve_high_demand", "label": "Single check valve failure on high demand mode", "per_year": 0.1 },
+    { "id": "double_check_high_demand", "label": "Double check valves in series failure (dissimilar) on high demand mode", "per_year": 0.01 },
+    { "id": "operator_weekly", "label": "Operator failure, routine task once per week or more often", "per_year": 1 },
+    { "id": "operator_monthly", "label": "Operator failure, routine task between once per month and once per week", "per_year": 0.1 },
+    { "id": "operator_nonroutine", "label": "Operator failure, non-routine task less than once per month", "per_year": 0.01 },
+    { "id": "loto_failure", "label": "LOTO procedure failure while following a written checklist (per opportunity)", "per_year": 0.001 },
+    { "id": "not_credible", "label": "Not a credible HAZOP initiating event (natural event, external impact, double jeopardy, incredible manual valve error, single point of failure)", "per_year": 0 }
+  ],
+  "ipl_types": [
+    { "id": "open_vent", "label": "Open vent (no valve)", "group": "passive", "credit": 2 },
+    { "id": "flame_arrester_eol", "label": "End-of-line deflagration flame arrester", "group": "passive", "credit": 2 },
+    { "id": "flame_arrester_inline", "label": "In-line deflagration / detonation arrester", "group": "passive", "credit": 1 },
+    { "id": "overflow_free", "label": "Overflow line to safe location, no impediment to flow", "group": "passive", "credit": 3 },
+    { "id": "overflow_rupture_disk", "label": "Overflow line with passive fluid or rupture disk", "group": "passive", "credit": 2 },
+    { "id": "overflow_may_block", "label": "Overflow line that could freeze, foul or be valved closed", "group": "passive", "credit": 1 },
+    { "id": "mechanical_stop", "label": "Permanent mechanical stop that limits travel (e.g. valve clamp)", "group": "passive", "credit": 2 },
+    { "id": "inherent_safe_design", "label": "Inherently safe design (e.g. design pressure exceeds all challenges)", "group": "passive", "credit": 2 },
+    { "id": "continuous_pilot", "label": "Continuous pilot", "group": "passive", "credit": 1 },
+    { "id": "captive_key", "label": "Captive key / lock system (e.g. Ellis key lock)", "group": "passive", "credit": 2 },
+    { "id": "car_seal", "label": "Adjustable movement-limiting device (car seal, chain/lock)", "group": "passive", "credit": 1 },
+    { "id": "restriction_orifice", "label": "Restriction orifice (clean, non-corrosive service)", "group": "passive", "credit": 2 },
+    { "id": "multiple_pump_seal", "label": "Multiple mechanical pump seal with failure detection", "group": "passive", "credit": 1 },
+    { "id": "operator_response", "label": "Human response to alarm / routine check / verification check", "group": "active", "credit": 1 },
+    { "id": "bpcs", "label": "BPCS control loop or interlock (not IEC 61511, max 1 credit)", "group": "active", "credit": 1 },
+    { "id": "sif_sil1", "label": "Safety instrumented function SIL 1", "group": "active", "credit": 1 },
+    { "id": "sif_sil2", "label": "Safety instrumented function SIL 2", "group": "active", "credit": 2 },
+    { "id": "sif_sil3", "label": "Safety instrumented function SIL 3", "group": "active", "credit": 3 },
+    { "id": "relief_valve", "label": "Relief valve designed for the scenario", "group": "active", "credit": 2 },
+    { "id": "relief_valve_isolable", "label": "Relief valve / rupture disc with block valve and no CSO management system", "group": "active", "credit": 1 },
+    { "id": "rupture_disc", "label": "Rupture disc designed for the scenario", "group": "active", "credit": 2 },
+    { "id": "breather_valve", "label": "Breather / pressure-vacuum valve", "group": "active", "credit": 2 },
+    { "id": "emergency_vent_hatch", "label": "Emergency vent hatch (credited like a relief device, as in the engineer worksheet)", "group": "active", "credit": 2 },
+    { "id": "check_valve_single", "label": "Single check valve, low-demand mode (not sole IPL for reverse-flow overpressure)", "group": "active", "credit": 1 },
+    { "id": "check_valve_double", "label": "Double check valves of dissimilar type, low-demand mode", "group": "active", "credit": 2 },
+    { "id": "pressure_regulator", "label": "Second pressure regulator as IPL", "group": "active", "credit": 1 }
+  ]
+}

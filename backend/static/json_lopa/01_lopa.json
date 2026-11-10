@@ -1,0 +1,2243 @@
+{
+  "deviations": {
+    "High Pressure": {
+      "generated_at": "2026-10-21T22:11:22+00:00",
+      "seconds": 154.8,
+      "model": "gpt-6.1-sol",
+      "causes": [
+        {
+          "cause_id": "PRESS-HIGH-C01",
+          "severity": 4,
+          "severity_reason": "Ignoring safeguards, excessive nitrogen can rupture the low-pressure tank, releasing naphtha and causing a pool fire with a credible fatal injury. Multiple fatalities are not established by the supplied information.",
+          "initiating_event": "bpcs_loop",
+          "initiating_event_reason": "PCV-0101 blanketing-loop failure is the closest entry: 0.1/yr. Excessive nitrogen supply pressure is an alternative challenge, not an additional independent failure required for this scenario.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Nitrogen blanketing pressure control.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": true,
+              "reason": "The failed control function is the initiating cause and cannot protect against its own failure."
+            },
+            {
+              "tags": [
+                "PCV-0102",
+                "AC-0101"
+              ],
+              "description": "Controlled out-breathing through the carbon canister.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Control-system independence, fail-open nitrogen capacity including canister backpressure, and IPL testing are not demonstrated."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "The worksheet accepts this maintained relief device, but does not establish capacity for maximum nitrogen flow at maximum supply pressure within the tank allowable pressure."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency tank venting.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Accepted as an auditable device in the worksheet, but nitrogen fail-open capacity and opening pressure are not demonstrated for this cause."
+            },
+            {
+              "tags": [
+                "TAH-0101"
+              ],
+              "description": "High-temperature alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Nitrogen overpressure need not produce a timely high-temperature alarm; no validated response procedure is supplied."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual emergency isolation.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No independent pressure alarm or validated response time is provided, and IS-28 does not isolate the nitrogen supply."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 provides local pressure indication only.",
+            "TI-0101 provides temperature indication only.",
+            "PSV-0101 protects liquid piping, not the tank vapor space."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PT-0103",
+                "new SIS-0103",
+                "new XV-N2-0103"
+              ],
+              "description": "Independent SIL 3 tank high-pressure shutdown closing a dedicated nitrogen isolation valve.",
+              "ipl_type": "sif_sil3",
+              "rationale": "With no demonstrated existing credit, 0.1/yr is F-1, risk I. Three credits give 1e-4/yr, F-4, risk III. Use independent pressure sensing, safety logic, utilities and a series nitrogen shutdown valve, separate from PCV-0101 and all existing credited functions. Validate closure time against the very small tank pressure margin and proof-test the complete function."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing protection is not demonstrated sufficient for nitrogen fail-open duty. The proposed independent SIL 3 shutdown reaches risk III, subject to response-time validation; verify existing vent capacity rather than assuming the worksheet's other venting cases cover this duty."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C02",
+          "severity": 4,
+          "severity_reason": "Without protection, blocked out-breathing during filling or heating can damage the tank roof or shell, release naphtha, and cause a potentially fatal pool fire.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "PCV-0102 failing closed is a valve failure at 0.1/yr. This also conservatively bounds the alternative fixed-equipment restriction entry at 0.01/yr; these are alternative causes, not simultaneous failures.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0102",
+                "AC-0101"
+              ],
+              "description": "Normal out-breathing path.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": true,
+              "reason": "Failure or restriction of this path initiates the scenario."
+            },
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Nitrogen blanketing control.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Closing nitrogen admission cannot accommodate displacement from continued filling or thermal vapor generation; separate IPL independence is also unverified."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Independent tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "W8/W9 explicitly accept this layer for blocked out-breathing. Credit 2, retaining the accepted sizing, set-pressure, maintenance and independent atmospheric-discharge basis."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Independent emergency tank vent.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "W8/W9 accept a separate effective and auditable emergency vent. Credit 2; it must remain independent of the blocked carbon-canister path and capable of protecting the tank if PVV-0102 fails."
+            },
+            {
+              "tags": [
+                "TAH-0101"
+              ],
+              "description": "High-temperature alarm and response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Blocked-vent overpressure during filling need not cause a temperature alarm."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual isolation of liquid flows.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No independent pressure alarm or validated intervention time is identified; isolation does not relieve existing pressure."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 and TI-0101 are monitoring instruments, not IPLs.",
+            "PSV-0101 and RO-0101 do not relieve tank vapor-space overpressure."
+          ],
+          "proposed_ipls": [],
+          "reference_row": "W8",
+          "verdict": "The accepted independent PVV-0102 and EH-0101 layers provide four credits: 0.1 × 0.1^4 = 1e-5/yr, F-5, risk IV. Protection is sufficient on the W8/W9 design and maintenance basis; W9 covers the alternative carbon-canister blockage."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C03",
+          "severity": 4,
+          "severity_reason": "Uncontrolled filling can cause liquid overflow, vent-system liquid carryover and tank damage, followed by a naphtha pool fire with a credible fatal injury.",
+          "initiating_event": "rotating_equipment",
+          "initiating_event_reason": "Loss of pump outflow while filling continues matches W6 and the rotating-equipment failure entry, 0.1/yr. Excess inflow from a control-loop failure has the same table frequency and is an alternative initiating branch.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level shutdown of tank inflow.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "W6 accepts this tested shutdown for pump-stop overfill. Without a SIL classification it receives only 1 credit. For excess-inflow branches, confirm the initiating control function does not share its sensor, logic or valve."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and operator intervention.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The supplied LAH-0102 measurement is not demonstrated independent of LT-0102/IS-09, and response time and procedures are unverified. W6's differently tagged alarm cannot establish independence for this alarm."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Vapor relief does not stop overfilling or prevent liquid release; liquid-relief duty is not established."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency tank vent.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Emergency vapor venting does not prevent the ultimate overfill and pool-fire consequence."
+            },
+            {
+              "tags": [
+                "PCV-0102"
+              ],
+              "description": "Normal out-breathing control.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Normal vapor venting neither terminates liquid inflow nor safely contains overflow."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UV-0102-IN"
+              ],
+              "description": "Manual emergency inlet isolation.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares the inlet shutdown valve with IS-09 and has no demonstrated independent alarm and timed response."
+            }
+          ],
+          "other_safeguards": [
+            "LT-0101 and level indicators support monitoring but no independent LT-0101 high-level alarm is established.",
+            "Valve position switches and status alarms do not independently detect impending overfill.",
+            "PG-0101, TI-0101 and TAH-0101 do not provide demonstrated timely overfill protection."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new OF-0103",
+                "new overflow containment receiver"
+              ],
+              "description": "Unimpeded gravity overflow to dedicated safe containment.",
+              "ipl_type": "overflow_free",
+              "rationale": "Provide a valve-free overflow, independent of level instruments and shutdown valves, sized for maximum credible inflow and arranged below vent flooding and tank damage levels. Safe receiving capacity and disposal must prevent ignition exposure and environmental release for the required duration. Three passive credits reduce the pump-stop branch from 0.01/yr to 1e-5/yr, F-5, risk IV; even without IS-09 credit, 1e-4/yr is risk III."
+            }
+          ],
+          "reference_row": "W6",
+          "verdict": "IS-09 alone gives 0.01/yr, F-2, risk II, so existing protection is insufficient. A properly engineered free overflow provides one additional independent passive layer and achieves risk III or better without relying on a second alarm sharing LT-0102."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C04",
+          "severity": 3,
+          "severity_reason": "Ignoring safeguards, sustained deadheading can damage the pump seal or piping and cause a localized naphtha release and fire, with lost-time injury or significant equipment loss. Fatal exposure is not established for this localized scenario.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Downstream valve failure closed is the closest credible entry, 0.1/yr. An unsupported inadvertent manual-valve error is not needed to establish this scenario.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Continuous minimum-flow recycle to the tank.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "The stated 8.6 m3/h recycle can address low-flow heating, but does not establish that maximum discharge pressure is safe. Pump-specific minimum flow, concurrent-pump operation, cleanliness and inspection basis are not supplied; no overall scenario credit is taken."
+            },
+            {
+              "tags": [
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Pump shutoff pressure bounded by equipment design pressure.",
+              "ipl_type": "inherent_safe_design",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No transfer-pump curves or downstream pressure/temperature ratings establish inherent protection. W2 concerns a different upstream pump and cannot substantiate this claim."
+            },
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Existing thermal relief valve.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "A thermal relief valve near the inlet is not demonstrated connected to, or sized for, a blocked transfer-pump discharge."
+            },
+            {
+              "tags": [
+                "TAH-0101"
+              ],
+              "description": "High-temperature alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "The sensor is not demonstrated to detect heating in either deadheaded pump, and response time is unverified."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual emergency pump shutdown.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Pump trip would terminate the energy input, but no independent alarm, timely detection or validated response is supplied."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10"
+              ],
+              "description": "Low-low tank level pump trip.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "A blocked discharge need not produce low tank level."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101A/B, FT-0101, FI-0101 and TI-0101 are monitoring instruments without a demonstrated protective response.",
+            "CV-100P-01A-DISCH and CV-100P-01B-DISCH prevent reverse flow, not forward deadhead overpressure."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PSV-0104A",
+                "new PSV-0104B",
+                "new pump relief return piping"
+              ],
+              "description": "Scenario-sized pump discharge relief/bypass protection returning safely to the tank.",
+              "ipl_type": "relief_valve",
+              "rationale": "Provide protection for each independently isolatable pump discharge, upstream of blocking points, independent of RO-0101 and operator action. Select opening pressure and capacity to limit pressure below the weakest equipment rating and maintain sufficient flow to prevent sustained deadhead overheating, including both-pump operation and return backpressure. Two credits give 0.001/yr, F-3, risk III."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing safeguards do not demonstrate complete protection against both pressure and sustained heating: the conservative current result is F-1, risk II. Dedicated, tested relief/bypass protection achieves risk III when both hydraulic and thermal duties are validated."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C05",
+          "severity": 3,
+          "severity_reason": "Unrelieved thermal expansion can rupture trapped-liquid piping or cause flange leakage, producing a localized naphtha fire with lost-time injury or substantial equipment damage.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Inadvertent automatic isolation trapping liquid is represented by valve failure, 0.1/yr, consistent with W4's closure-initiated scenario. Normal ambient or solar heating is an operating challenge, not a separate rare natural event; intentional isolation requires its own operating-demand basis.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Thermal relief of trapped naphtha.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "W4 accepts two credits for its protected pocket, but the supplied arrangement does not show uninterrupted relief coverage of every inlet, suction, discharge and other blocked-in section. It cannot receive blanket credit for this entire cause."
+            },
+            {
+              "tags": [
+                "TAH-0101"
+              ],
+              "description": "High-temperature alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Small temperature increases can generate damaging liquid pressure before this remote temperature alarm detects a problem."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual shutdown and isolation.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Isolation does not relieve trapped-liquid pressure and can create additional blocked-in volumes."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle path.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Only volumes remaining hydraulically connected to the tank can benefit; universal connection through every isolation lineup is not shown."
+            }
+          ],
+          "other_safeguards": [
+            "Pressure gauges and TI-0101 provide indication only.",
+            "PVV-0102 and EH-0101 protect the tank, not isolated liquid pockets.",
+            "External-fire heating requires a separate fire-duty assessment; thermal relief sizing alone does not establish fire protection."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "PSV-0101",
+                "new TRV-0105 series"
+              ],
+              "description": "Complete thermal-relief coverage of all credible blocked-in liquid pockets.",
+              "ipl_type": "relief_valve",
+              "rationale": "Retain PSV-0101 for its verified pocket and install dedicated thermal relief wherever isolation prevents communication with it. Each pocket must have a scenario-sized, tested valve with no unmanaged isolation, discharging to a safe lower-pressure destination. This is one two-credit relief layer per pocket, not additive credit for valves on different pockets; 0.1 × 0.01 = 0.001/yr, F-3, risk III."
+            }
+          ],
+          "reference_row": "W4",
+          "verdict": "The W4 pocket is sufficiently protected if its accepted PSV-0101 basis remains valid, but coverage of all sections in this broader cause is incomplete. Completing the relief coverage brings each credible ambient/solar thermal-expansion branch to risk III."
+        },
+        {
+          "cause_id": "PRESS-HIGH-C06",
+          "severity": 4,
+          "severity_reason": "Ignoring safeguards, external fire can cause tank failure, major naphtha release and escalation with a credible fatal injury. The supplied layout and occupancy do not establish multiple fatalities.",
+          "initiating_event": "not_credible",
+          "initiating_event_reason": "Screened from this LOPA under the supplied rule for external impacts/double-jeopardy scenarios. This classification does not mean external fire is physically impossible or remove fire-design obligations; a separate internal heating failure would require a defined initiating event.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency venting for external-fire exposure.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Its stated purpose includes fire venting, but fire-case sizing, opening pressure, allowable accumulation and discharge exposure are not supplied. W11 addresses thermal expansion, not a demonstrated external-fire duty."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Normal breathing capability does not establish adequate external-fire relief capacity."
+            },
+            {
+              "tags": [
+                "PCV-0102",
+                "AC-0101"
+              ],
+              "description": "Normal out-breathing through the carbon canister.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Fire survivability, independence and fire-flow capacity through the canister are not established."
+            },
+            {
+              "tags": [
+                "TAH-0101",
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Temperature warning and manual emergency isolation.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Isolation may limit incoming inventory but cannot stop external heat input or relieve the tank; fire response time is not validated."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 and TI-0101 provide monitoring only.",
+            "PSV-0101 is a liquid thermal-relief device, not demonstrated tank fire protection.",
+            "Fire relief, structural exposure, safe discharge and escalation control remain separate design-verification requirements."
+          ],
+          "proposed_ipls": [],
+          "reference_row": null,
+          "verdict": "No additional LOPA IPL is required for this screened initiating event under the supplied rule. Fire protection is nevertheless not demonstrated complete by the available information, and emergency venting alone does not establish protection against all fire-induced tank failure modes."
+        }
+      ]
+    },
+    "Reverse Flow": {
+      "generated_at": "2026-10-21T22:14:28+00:00",
+      "seconds": 104.7,
+      "model": "gpt-6.1-sol",
+      "causes": [
+        {
+          "cause_id": "FLOW-REV-C01",
+          "severity": 4,
+          "severity_reason": "Conservatively C-4: sustained reverse flow could overpressure or overfill the low-pressure tank, causing naphtha release and a potentially fatal pool fire; reverse rotation could also damage pump seals. Confirm downstream pressure, available inventory and reverse-flow capacity before finalizing severity; safeguards are excluded from this assessment.",
+          "initiating_event": "check_valve_high_demand",
+          "initiating_event_reason": "Use single check-valve failure on high demand, 0.1/yr, because low-demand service is not demonstrated. The two pump discharge checks are in parallel, not dissimilar checks in series; failure of either can open a reverse-flow path.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "CV-100P-01A-DISCH",
+                "CV-100P-01B-DISCH"
+              ],
+              "description": "Pump discharge nonreturn valves.",
+              "ipl_type": "check_valve_single",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The failed check is the initiating event and cannot also protect against it. The other parallel check does not isolate the failed branch; inspection and leakage-test evidence is not supplied."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UV-0102-OUT",
+                "UY-0102"
+              ],
+              "description": "Manual emergency shutdown and tank outlet isolation.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "One manual-response chain, not separate hand-switch and interlock IPLs. No independent reverse-flow alarm or validated response time is provided; suction isolation does not protect the pump from downstream pressure or isolate the recycle return."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle restriction.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "The orifice intentionally passes flow toward the tank and does not prevent sustained backflow. Its 8.6 m3/h normal-flow duty does not establish a safe reverse-pressure flow limit; sizing and inspection evidence for this scenario is absent."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and potential operator intervention.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No documented response isolates all reverse-flow sources. Level detection may be too late for pressure-driven damage; response time, procedures and testing are unverified."
+            },
+            {
+              "tags": [
+                "LSHH-0102",
+                "IS-09",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level inlet shutdown.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Closing the normal inlet does not stop backflow through pumps or recycle. Independence from LAH-0102 is not demonstrated because both may use LT-0102; scenario-specific proof testing is not supplied."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No demonstrated capacity for the maximum reverse-flow displacement or flashing load, and no protection against liquid overfill or pump damage. Worksheet credit for other pressure scenarios does not establish credit here."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Tank emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Reverse-flow relief capacity, safe discharge and applicable testing are unverified. Emergency vapor venting does not establish protection against liquid overfill or pump damage."
+            },
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Transfer-line thermal relief valve.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Specified for trapped-liquid thermal expansion, not sustained HPU backflow. Protected volume, capacity and scenario-specific maintenance evidence are not established."
+            }
+          ],
+          "other_safeguards": [
+            "FT-0101/FI-0101/FY-0101 provide monitoring only; bidirectional measurement and a reverse-flow alarm are not confirmed.",
+            "PG-0101A, PG-0101B and PG-0101 are local pressure indications, not alarm-response IPLs.",
+            "ZSO-0102/ZSC-0102/ZAO-0102/ZAC-0102 provide valve-position diagnostics, not reverse-flow detection.",
+            "PCV-0102 and AC-0101 provide normal out-breathing, not demonstrated protection against sustained liquid backflow."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PDT-REV-A",
+                "new PDT-REV-B",
+                "new PT-REV-H",
+                "new SIS-REV",
+                "new XV-REV-A",
+                "new XV-REV-B",
+                "new XV-REV-R"
+              ],
+              "description": "Independent SIL 3 reverse-flow prevention SIF isolating each affected pump discharge and the tank recycle return.",
+              "ipl_type": "sif_sil3",
+              "rationale": "With no valid existing credit, 0.1/yr gives F-1/C-4, risk I. One SIL 3 function provides three Table B2 credits: 0.1 × 0.1^3 = 1e-4/yr, F-4/C-4, risk III. Use dedicated sensing, logic and shutdown valves independent of existing controls and check valves. Establish pressure-reversal and pump-state trip logic, valve locations and closure times that prevent damaging reverse flow through either pump and through RO-0101. Verify pump transient limits, surge, trapped-liquid relief, SIL achievement and proof-test intervals before crediting this function."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing protection is not demonstrated sufficient for reverse-flow damage, tank overpressure or overfill. The proposed independent SIL 3 function brings the assessed risk to III only after hydraulic, response-time and SIL validation."
+        },
+        {
+          "cause_id": "FLOW-REV-C02",
+          "severity": 4,
+          "severity_reason": "The stated hypothetical sustained backflow could cause tank overfill or overpressure, naphtha release and a potentially fatal fire, conservatively C-4 without safeguards. However, the supplied line-up description does not establish a credible initiating action or an additional physical reverse-flow path.",
+          "initiating_event": "not_credible",
+          "initiating_event_reason": "As written, this is an unsupported manual-valve error. No bypass or specific erroneous valve movement is identified: opening the listed pump isolation valves is normal, and RO-0101 already provides an intentional discharge-to-tank return. Do not assign an operator-error frequency without a credible task and defined flow path.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "CV-100P-01A-DISCH",
+                "CV-100P-01B-DISCH"
+              ],
+              "description": "Pump discharge nonreturn valves.",
+              "ipl_type": "check_valve_single",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "They can oppose reverse flow through their respective pumps but cannot isolate the recycle path. Demand mode and leakage-test evidence are unverified; no credit is assigned to this undefined scenario."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UV-0102-OUT"
+              ],
+              "description": "Manual emergency isolation.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Independence from the initiating operator action is not established. There is no confirmed reverse-flow alarm, validated response time or isolation of the recycle return."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle restriction.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "It limits flow but does not prevent the stated flow direction. No calculation demonstrates that maximum pressure-driven recycle is safe for the tank."
+            }
+          ],
+          "other_safeguards": [
+            "FT-0101/FI-0101 and PG-0101A/PG-0101B are monitoring only; reverse-flow alarming is not confirmed.",
+            "ZSO-0102/ZSC-0102/ZAO-0102/ZAC-0102 are valve-position diagnostics.",
+            "Identify any actual bypass, temporary connection or maintenance line-up before reopening this cause.",
+            "Assess HPU backpressure through the permanently open RO-0101 return separately; it does not require an incorrect manual line-up."
+          ],
+          "proposed_ipls": [],
+          "reference_row": null,
+          "verdict": "No additional IPL is required for this unsupported manual-error cause under the specified screening rule. This does not establish that the recycle path is safe; its normal hydraulic connection requires explicit reverse-pressure assessment."
+        },
+        {
+          "cause_id": "FLOW-REV-C03",
+          "severity": 4,
+          "severity_reason": "Ignoring protective checks and shutdowns, downstream pressure after a pump stop can drive backflow, pump reverse rotation and possible seal damage, followed by tank overpressure or overfill and a potentially fatal naphtha fire. C-4 is conservative pending downstream pressure, inventory and hydraulic confirmation.",
+          "initiating_event": "rotating_equipment",
+          "initiating_event_reason": "For an inadvertent pump stop/trip, the closest entry is rotating-equipment failure, 0.1/yr. A planned stop is a normal demand on reverse-flow protection, not an additional failure; this sequence overlaps C01 and its frequency must not be added again for the same event.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "CV-100P-01A-DISCH",
+                "CV-100P-01B-DISCH"
+              ],
+              "description": "Nonreturn protection following pump shutdown.",
+              "ipl_type": "check_valve_single",
+              "independent": true,
+              "effective": true,
+              "auditable": false,
+              "reason": "Each check is intended to prevent reverse flow through its stopped pump, but low-demand applicability and leakage-test records are not demonstrated. The parallel checks are not two series layers and do not protect the recycle path; a check cannot be the sole reverse-flow overpressure IPL."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UV-0102-OUT",
+                "UY-0102"
+              ],
+              "description": "Manual emergency shutdown and outlet isolation.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No independent reverse-flow alarm or validated operator response is supplied. Tripping an already stopped pump adds no protection, and outlet isolation does not stop the recycle return or prevent downstream pressure reaching the pump."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle restriction.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "It remains a discharge-header-to-tank flow path after shutdown. Normal minimum-flow sizing does not establish safe flow at maximum HPU backpressure; scenario-specific sizing and inspection evidence are absent."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and potential operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No documented action isolates all backflow paths, and level detection may not precede pressure or pump damage. Response time and testing are unverified."
+            },
+            {
+              "tags": [
+                "LSHH-0102",
+                "IS-09",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level inlet shutdown.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Closing the normal inlet cannot stop reverse flow through the outlet or recycle. Independence from LAH-0102 is unconfirmed because of potentially shared LT-0102; scenario-specific proof testing is absent."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Capacity for maximum reverse-flow displacement and flashing is not established. It does not prevent liquid overfill or pump damage; applicable testing evidence is not supplied."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency tank vent.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Scenario-specific capacity, discharge safety and testing are unverified. Vapor venting alone does not prevent liquid overfill or pump damage."
+            },
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Thermal relief of trapped transfer-line liquid.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Thermal-relief duty does not establish capacity or coverage for sustained HPU reverse flow. No applicable sizing or maintenance evidence is supplied."
+            }
+          ],
+          "other_safeguards": [
+            "FT-0101/FI-0101/FY-0101 provide flow monitoring; bidirectional detection and reverse-flow alarming are unconfirmed.",
+            "PG-0101A/PG-0101B and PG-0101 provide local pressure indication only.",
+            "ZSO-0102/ZSC-0102/ZAO-0102/ZAC-0102 provide valve-position diagnostics.",
+            "LSLL-0102/IS-10 prevents low-level dry running, not reverse flow after a pump stop.",
+            "PCV-0102 and AC-0101 provide normal vapor out-breathing, not demonstrated liquid-backflow protection."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PDT-REV-A",
+                "new PDT-REV-B",
+                "new PT-REV-H",
+                "new SIS-REV",
+                "new XV-REV-A",
+                "new XV-REV-B",
+                "new XV-REV-R"
+              ],
+              "description": "Use the same independent SIL 3 reverse-flow prevention SIF proposed for C01; do not install or count a duplicate layer.",
+              "ipl_type": "sif_sil3",
+              "rationale": "No existing IPL passes all criteria: 0.1/yr is F-1/C-4, risk I. Three SIL 3 credits reduce this to 1e-4/yr, F-4/C-4, risk III. Dedicated sensing, logic and final elements must isolate the stopped-pump branches and recycle return before damaging reversal or tank loading. Validate action during pump trips, including loss-of-power behavior, closure surge, process safety time and proof testing; do not depend on the initiating pump controls."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "The existing checks and manual shutdown are not demonstrated sufficient, particularly because the recycle return remains connected. The shared C01 SIL 3 proposal achieves risk III conditionally on successful hydraulic and functional-safety validation; overlapping scenarios must not be double-counted."
+        }
+      ]
+    },
+    "More Flow": {
+      "generated_at": "2026-10-21T22:14:50+00:00",
+      "seconds": 126.4,
+      "model": "gpt-6.1-sol",
+      "causes": [
+        {
+          "cause_id": "FLOW-MORE-C01",
+          "severity": 4,
+          "severity_reason": "Ignoring safeguards, sustained excess inflow can overfill 100T-01, release naphtha and cause a pool fire with potential fatal injury. Multiple-fatality exposure is not established.",
+          "initiating_event": "bpcs_loop",
+          "initiating_event_reason": "Use upstream flow-control loop failure, 0.1/yr, as the closest screening event. Confirm the actual upstream mechanism and maximum deliverable flow; normal flow variation alone is not a defined initiating failure.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high tank level closes the inlet shutdown valve.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Independent of the assumed upstream failure. Maximum inflow, trip elevation, closure time and proof-test arrangements are not demonstrated. No credit pending verification; an unclassified interlock is not a SIL-rated SIF."
+            },
+            {
+              "tags": [
+                "LAH-0102",
+                "LT-0102"
+              ],
+              "description": "High-level alarm followed by operator action to stop filling.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Treat as sharing LT-0102 with IS-09 unless separate sensing is demonstrated. Independent isolation action, available response time and tested response procedure are not documented."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "Manual emergency isolation of tank inflow.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares the inlet final element with IS-09. No independent initiating alarm, timely response demonstration or validated operator-response arrangements are provided."
+            },
+            {
+              "tags": [
+                "PCV-0102",
+                "AC-0101"
+              ],
+              "description": "Normal pressure-controlled out-breathing.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Does not stop filling or safely contain liquid overflow. Capacity and maintenance evidence are also absent."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "May protect against vapor-displacement pressure if adequately sized, but does not prevent the governing liquid-overfill release. Scenario sizing and testing are not supplied."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency tank vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Emergency pressure relief is not safe liquid-overflow disposal. Capacity, separate relief path and inspection records are unverified."
+            }
+          ],
+          "other_safeguards": [
+            "LT-0101, LI-0101A, LI-0102A/B and LY-0101 provide monitoring or signal processing, not additional IPLs.",
+            "ZSO-0101, ZSC-0101, ZAO-0101 and ZAC-0101 provide inlet-valve diagnostics/status, not independent overfill protection.",
+            "FT-0101, FI-0101 and FY-0101 monitor HPU discharge, not excess tank inflow.",
+            "The floating roof and nitrogen blanketing do not prevent liquid overfill."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new OF-100T-01",
+                "new V-OF-100T-01"
+              ],
+              "description": "Unobstructed gravity overflow to a dedicated safe naphtha receiver.",
+              "ipl_type": "overflow_free",
+              "rationale": "Provide one passive layer independent of upstream control and all existing instruments. Locate below the unsafe tank level; demonstrate maximum-inflow capacity, adequate receiving capacity, safe vapor handling, floating-roof compatibility and no isolating or flow-impeding devices. Table B2 credit 3 reduces 0.1/yr to 1e-4/yr: F-4/C-4, rank III. Do not apply this credit to an overflow that can block or back up."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing overfill protection is not demonstrated sufficient: no IPL credit is presently established, giving F-1/C-4, rank I. The specified free-overflow layer reaches rank III once its design and inspection basis are verified."
+        },
+        {
+          "cause_id": "FLOW-MORE-C02",
+          "severity": 4,
+          "severity_reason": "Continued filling can cause tank overfill, naphtha loss of containment and a potentially fatal pool fire, ignoring all safeguards.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Use inlet shutdown-valve failure to close, 0.1/yr, for the governing branch. A manual valve left open is a separate operational branch requiring a defined task and frequency; merely leaving a normally open isolation valve open is not itself a failure.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level shutdown of tank filling.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "For the governing failed-open UV-0102-IN branch, the protection demands closure of the failed initiating valve. It cannot be credited. Test and timing evidence are also absent."
+            },
+            {
+              "tags": [
+                "LAH-0102",
+                "LT-0102"
+              ],
+              "description": "High-level alarm and operator termination of filling.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares level sensing with IS-09, and no separate upstream shutdown or manual isolation response is specified. An operator command to the failed UV-0102-IN would be ineffective."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Uses the initiating failed inlet valve. Tripping transfer pumps does not stop upstream inflow and can accelerate inventory accumulation."
+            },
+            {
+              "tags": [
+                "PCV-0102",
+                "AC-0101"
+              ],
+              "description": "Normal out-breathing path.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Does not stop continued liquid filling or provide safe overflow disposal; scenario capacity and maintenance evidence are absent."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank pressure-vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Pressure relief does not prevent the governing overfill release. No liquid-overflow protection or scenario-specific verification is demonstrated."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Not a safe liquid-overflow route; opening may release naphtha rather than prevent loss of containment."
+            }
+          ],
+          "other_safeguards": [
+            "LT-0101 and level indicators provide inventory monitoring only.",
+            "Inlet position switches and status alarms diagnose valve position but do not independently terminate filling.",
+            "V-100T-IN-ISO could support a defined emergency response, but accessibility, response time and procedures are not established.",
+            "FT-0101, FI-0101 and FY-0101 monitor discharge; they do not protect against continued inlet flow."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new OF-100T-01",
+                "new V-OF-100T-01"
+              ],
+              "description": "Use the same dedicated, unobstructed safe-overflow system proposed for FLOW-MORE-C01.",
+              "ipl_type": "overflow_free",
+              "rationale": "Protect against overfill without requiring the failed inlet valve to close. Demonstrate gravity capacity at maximum sustained inflow, safe receiving capacity and vapor handling, with no possible isolation or impediment. Credit 3 reduces 0.1/yr to 1e-4/yr: F-4/C-4, rank III. This is one common project recommendation, not a second layer added to the C01 overflow."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "The failed inlet shutdown valve defeats both automatic and manual commands using that valve; existing protection gives F-1/C-4, rank I. The verified independent free-overflow system provides sufficient protection to rank III."
+        },
+        {
+          "cause_id": "FLOW-MORE-C03",
+          "severity": 4,
+          "severity_reason": "Provisionally screen excessive HPU naphtha feed as capable of causing downstream loss of containment and a fatal fire. The HPU reaction, pressure, equipment capacity and occupancy information needed to confirm this consequence are absent.",
+          "initiating_event": "operator_weekly",
+          "initiating_event_reason": "Use erroneous parallel-pump operation as the operational initiating event. With task frequency unspecified, conservatively screen at 1/yr; confirm the actual operating task. Excess installed capacity alone is a design condition, not a pump-overspeed failure.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "100P-01A",
+                "100P-01B",
+                "UV-0102-OUT"
+              ],
+              "description": "Operator-initiated emergency pump shutdown and isolation.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Independent alarm-based detection and recovery from the initiating operating error are not demonstrated. No high-flow alarm, response-time analysis or validated response procedure is specified."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Low-low tank level trips transfer pumps.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Tank depletion is not a timely measure of HPU overfeed, particularly with approximately five days of inventory. Proof-test evidence is absent."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle restriction.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "A recycle orifice is not a demonstrated maximum-forward-flow limiter. No hydraulic verification or inspection basis establishes protection against both pumps operating."
+            }
+          ],
+          "other_safeguards": [
+            "FT-0101, FI-0101 and FY-0101 provide flow monitoring; no high-flow alarm or automatic high-flow shutdown is shown.",
+            "PG-0101A/B are local pressure indicators, not overfeed IPLs.",
+            "Tank high-level alarm, IS-09 and inlet-valve position feedback do not protect HPU against excessive forward flow.",
+            "Discharge check valves prevent some reverse-flow paths but do not limit forward feed."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new RO-HPU-0101"
+              ],
+              "description": "Permanent forward-feed restriction sized to limit flow to the HPU.",
+              "ipl_type": "restriction_orifice",
+              "rationale": "Provide a passive layer independent of pump-start commands. Verify acceptable maximum flow with both pumps operating, maximum tank head, minimum HPU backpressure and applicable fluid properties. Confirm clean, non-corrosive service and inspect for erosion; verify that the restriction does not create an unacceptable pump operating condition. Table B2 credit 2."
+            },
+            {
+              "tags": [
+                "new FT-HH-0101",
+                "new SIS-HF-0101",
+                "new SDV-HPU-0101"
+              ],
+              "description": "SIL 2 excessive-forward-flow shutdown using independent sensing, safety logic and a dedicated feed isolation valve.",
+              "ipl_type": "sif_sil2",
+              "rationale": "Stop excessive HPU feed before its process safety limit is exceeded. Keep the complete SIF independent of pump-start controls, FT-0101, IS-28 and the passive restriction; verify shutdown transients and pump protection. Credit 2 plus restriction credit 2 reduces the conservative 1/yr event to 1e-4/yr: F-4/C-4, rank III."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "No existing IPL is established for HPU overfeed; the provisional C-4 assessment gives rank I. Two independent layers reach rank III at the conservative initiating frequency, but final sufficiency requires confirmation of the HPU consequence, safe flow limit and response time."
+        },
+        {
+          "cause_id": "FLOW-MORE-C04",
+          "severity": 4,
+          "severity_reason": "Provisionally retain C-4 for excessive HPU feed causing a downstream fatal fire. Blocked minimum flow can also overheat the pump at low HPU demand and lead to seal leakage and fire; verify both outcomes using hydraulic and downstream process data.",
+          "initiating_event": "fixed_equipment",
+          "initiating_event_reason": "Use fixed-equipment failure, 0.01/yr, as the closest entry for RO-0101 or recycle-line blockage. A fixed orifice has no opening adjustment; any alleged valve misposition requires identification of an actual recycle valve and credible operating task.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Existing minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Its blockage is the initiating event, so it cannot also protect against the event. No blockage-detection or inspection evidence is supplied."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Manual emergency pump shutdown.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No recycle-low-flow or forward-high-flow alarm and timely operator response are specified. Manual emergency shutdown availability alone earns no IPL credit."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Low-low tank level pump trip.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Does not detect recycle blockage or promptly prevent HPU overfeed and pump overheating. Proof-test arrangements are not demonstrated."
+            }
+          ],
+          "other_safeguards": [
+            "FT-0101, FI-0101 and FY-0101 monitor forward flow but have no specified protective alarm or trip.",
+            "PG-0101A/B and TI-0101 provide indication; no demonstrated pump-overtemperature protective action is shown.",
+            "Tank high-level protection, inlet-valve feedback and tank pressure relief do not protect against this discharge/recycle failure.",
+            "Confirm the pump/system curves: recycle blockage does not necessarily produce a hazardous increase in forward flow."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new FT-REC-0101",
+                "new FT-HH-0101",
+                "new SIS-RF-0101",
+                "new K-100P-01A",
+                "new K-100P-01B"
+              ],
+              "description": "SIL 2 shutdown on insufficient recycle flow or excessive forward flow while a transfer pump is running.",
+              "ipl_type": "sif_sil2",
+              "rationale": "Use independent recycle and forward-flow measurements to trip both pumps through dedicated safety-rated shutdown paths. Define startup allowance and trip timing from pump thermal limits and HPU allowable overfeed duration. Keep the function independent of RO-0101, existing monitoring and normal pump controls. Credit 2 reduces 0.01/yr to 1e-4/yr: F-4/C-4, rank III. Coordinate shared new tags with C03 as one engineered system; do not count shared components as separate IPLs."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing protection is not sufficient for the provisional C-4 consequence: 0.01/yr gives F-2, rank II. The specified SIL 2 function reaches rank III and covers both overfeed and minimum-flow loss, subject to hydraulic, consequence and SIL verification."
+        }
+      ]
+    },
+    "No Flow / Less Flow": {
+      "generated_at": "2026-10-21T22:16:19+00:00",
+      "seconds": 216.3,
+      "model": "gpt-6.1-sol",
+      "causes": [
+        {
+          "cause_id": "FLOW-NL-C01",
+          "severity": 3,
+          "severity_reason": "Ignoring protection, continued withdrawal can cause pump starvation, seal leakage and a local naphtha fire. C-3 is consistent with W1; the five-day inventory delays the event but does not reduce its ultimate severity. No specific hazardous HPU response to feed loss is established.",
+          "initiating_event": "rotating_equipment",
+          "initiating_event_reason": "Use upstream rotating-equipment failure, 0.1/yr, as the closest provisional Table B1 entry for loss of supply. Confirm the actual upstream initiating mechanism; this is not an additional credit for inventory.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "UY-0102",
+                "UV-0102-OUT",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Low-low tank level trips the transfer pumps and closes the outlet valve.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Independent of upstream supply failure. W1 records this protection as effective and auditable; retain one credit, not SIL credit. Confirm the supplied tag mapping and preserve proof-test records. Pump trip and valve closure are one layer."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAL-0102"
+              ],
+              "description": "Low-level alarm followed by operator intervention.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The supplied alarm is associated with the same level measurement supporting IS-10. An independent alarm sensor, defined intervention and validated response time are not established; W1's differently tagged alarm cannot establish these requirements."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0102",
+                "UV-0102-OUT"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares shutdown equipment with IS-10 and has no independent initiating alarm or demonstrated response procedure. It is not another credited layer."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Recycle cannot provide suction inventory after the tank empties. No scenario-specific credit applies."
+            }
+          ],
+          "other_safeguards": [
+            "LT-0101, LI-0101A, LI-0102A/B and LY-0101 provide level monitoring or signal processing, not additional layers.",
+            "FT-0101, FI-0101, FY-0101 and PG-0101A/B provide monitoring; no low-flow alarm response is established.",
+            "Inlet/outlet position switches and ZAO/ZAC indications are diagnostic status, not independent protective actions."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "LT-0101",
+                "new LAL-0101",
+                "V-100T-OUT-ISO"
+              ],
+              "description": "Restore an independent low-level alarm and documented operator isolation response.",
+              "ipl_type": "operator_response",
+              "rationale": "Use LT-0101 through an alarm path independent of LT-0102/IS-10. Validate time and safe access for closing V-100T-OUT-ISO before suction is lost, without relying on IS-10 final elements. Alarm testing, training and response verification provide one credit against starvation and seal fire."
+            }
+          ],
+          "reference_row": "W1",
+          "verdict": "Existing credited protection gives 0.1 × 0.1 = 0.01/yr, F-2/C-3, risk II: insufficient. Restoring the independent alarm-response layer gives 0.001/yr, F-3, risk III, subject to response-time and independence validation."
+        },
+        {
+          "cause_id": "FLOW-NL-C02",
+          "severity": 3,
+          "severity_reason": "Loss of inlet flow followed by continued pumping can ultimately cause cavitation, seal leakage and local fire, consistent with W1's C-3 assessment. Inventory only provides response time.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Failure or spurious closure of UV-0102-IN is a valve-failure event at 0.1/yr. If the actual cause is a control-loop failure, use that mechanism instead, without adding another initiating frequency.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "UY-0102",
+                "UV-0102-OUT",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Low-low level pump trip and outlet isolation.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "For an isolated inlet-valve failure, this is an independent downstream protection function. W1 supports one auditable BPCS credit; no SIL classification is established."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAL-0102"
+              ],
+              "description": "Low-level alarm and operator action.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares level measurement with the credited trip; independent detection, response instructions and response verification are not established."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0101",
+                "UY-0102"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Cannot reopen the failed inlet valve and shares shutdown equipment with IS-10. No separate alarm-response layer is demonstrated."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Does not prevent depletion of tank inventory or subsequent suction starvation."
+            }
+          ],
+          "other_safeguards": [
+            "ZSO-0101, ZSC-0101 and ZAO/ZAC-0101 indicate inlet-valve position; no independent automatic protective response is shown.",
+            "LT-0101 and level indications support monitoring.",
+            "FT/FI/FY-0101 and PG-0101A/B are monitoring instruments, not demonstrated IPLs.",
+            "A common utility or logic failure affecting both inlet closure and IS-10 requires a separate common-cause assessment."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "LT-0101",
+                "new LAL-0101",
+                "V-100T-OUT-ISO"
+              ],
+              "description": "Independent low-level alarm with operator isolation of tank withdrawal.",
+              "ipl_type": "operator_response",
+              "rationale": "Use the same independent alarm-response improvement specified for C01, not another duplicate installation. Independent detection and manual isolation prevent starvation despite inlet-valve failure and provide one additional credit."
+            }
+          ],
+          "reference_row": "W1",
+          "verdict": "One existing credit gives 0.01/yr, F-2/C-3, risk II. The independent alarm-response improvement reduces this to 0.001/yr, F-3, risk III; sufficiency depends on excluding shared initiating failures."
+        },
+        {
+          "cause_id": "FLOW-NL-C03",
+          "severity": 3,
+          "severity_reason": "An uncorrected inlet restriction can eventually exhaust usable inventory and cause pump seal leakage and local fire, as in the inlet-loss scenario.",
+          "initiating_event": "operator_nonroutine",
+          "initiating_event_reason": "Leaving an isolation valve closed during return to service is a credible non-routine maintenance/operating error, provisionally 0.01/yr. It is not automatically an incredible manual-valve error; no written-checklist basis is supplied for using loto_failure.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "UY-0102",
+                "UV-0102-OUT",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Low-low level trip of transfer pumps and outlet isolation.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Independent of the inlet manual-valve error and effective before inventory loss causes dry running. W1 supports the function's auditability and one BPCS credit."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAL-0102"
+              ],
+              "description": "Low-level alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares measurement with IS-10; no separately validated alarm-response function is demonstrated."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "No independent alarm-response basis and shared shutdown equipment; not an additional layer."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Cannot prevent inventory depletion or supply liquid to a starved suction."
+            }
+          ],
+          "other_safeguards": [
+            "Level and discharge-flow indications can reveal the inventory imbalance but are not standalone IPLs.",
+            "Inlet shutdown-valve position indications do not establish the position of V-100T-IN-ISO.",
+            "Maintenance line-up checks are good practice but have no demonstrated independent IPL basis here."
+          ],
+          "proposed_ipls": [],
+          "reference_row": null,
+          "verdict": "At 0.01 × 0.1 = 0.001/yr, the credited low-level trip gives F-3/C-3, risk III; no additional layer is required for this initiating frequency. The independent alarm improvement proposed for C01/C02 also benefits this scenario without being required for its risk target."
+        },
+        {
+          "cause_id": "FLOW-NL-C04",
+          "severity": 4,
+          "severity_reason": "Suction starvation can cause the C-3 pump seal-fire consequence in W3. The worse credible branch is continued receipt into a tank with blocked withdrawal, ultimately causing overfill and a potentially fatal pool fire, C-4, ignoring all level protection.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Use UV-0102-OUT failure or spurious closure at 0.1/yr for the governing credible branch. Manual misalignment and physical blockage need mechanism-specific assessment; do not sum these alternatives or discard the whole cause as an incredible manual error.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSLL-0102",
+                "IS-10",
+                "UY-0102",
+                "UV-0102-OUT"
+              ],
+              "description": "Tank low-low level pump trip.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": true,
+              "reason": "Tank level can remain normal or rise while the pump suction is blocked. The outlet valve is also part of the initiating assembly. W1 supports testing of the level function, not protection against this blockage."
+            },
+            {
+              "tags": [
+                "ZSC-0102",
+                "IS-10"
+              ],
+              "description": "Worksheet-claimed closed-position pump trip.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "W3 claims a trip, but the supplied instrument description establishes status only. It would not detect partial restriction or blockage elsewhere, and independence from the failing valve assembly is unproven."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high tank level closes the inlet.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Protects the separate tank-overfill branch, not pump starvation. W6 supports one effective, auditable BPCS credit for this function."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares measurement with IS-09 and lacks a demonstrated independent response procedure."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Returns liquid to the tank, not downstream of the suction obstruction; it cannot protect a starved pump."
+            },
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Thermal relief of trapped liquid.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "W4 supports thermal-relief maintenance, but this does not prevent pump starvation or tank overfill. Confirm its actual connection before crediting any separate trapped-volume scenario."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "No independent alarm-response function is established; shutdown equipment is shared."
+            }
+          ],
+          "other_safeguards": [
+            "ZSO/ZSC and ZAO/ZAC-0102 remain diagnostic status unless verified cause-and-effect documentation establishes an automatic trip.",
+            "FT/FI/FY-0101, PG-0101A/B and level indicators provide monitoring only.",
+            "PVV-0102 and EH-0101 protect pressure/vacuum scenarios, not liquid overfill or suction starvation."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new FT-0103",
+                "new FSL-0103",
+                "new SIS-0103",
+                "new UV-0103-IN",
+                "new pump trip devices"
+              ],
+              "description": "SIL 2 low-delivery-flow shutdown: stop both transfer pumps and close a separate inlet shutdown valve.",
+              "ipl_type": "sif_sil2",
+              "rationale": "Independent low HPU-delivery detection must stop a starved pump before seal damage and isolate incoming naphtha before tank overfill. Use independent sensing, safety logic, inlet valve/actuation and pump trip devices; do not rely on the failed outlet valve, LT-0102 or existing IS-09 outputs. Validate partial-restriction coverage and tightly controlled startup bypasses. No suitable passive suction-protection layer is established."
+            }
+          ],
+          "reference_row": "W3",
+          "verdict": "Existing overfill protection gives F-2/C-4, risk II, while pump starvation has no valid existing layer. The proposed SIL 2 function gives F-4/C-4, risk III with IS-09 for overfill, and F-3/C-3, risk III for pump seal fire, subject to timely low-flow detection."
+        },
+        {
+          "cause_id": "FLOW-NL-C05",
+          "severity": 4,
+          "severity_reason": "With the pumps stopped or unable to deliver, continued inlet flow can overfill the tank and produce a potentially fatal pool fire, as identified in W6. Five days of tank inventory does not maintain HPU delivery when no pump is operating.",
+          "initiating_event": "rotating_equipment",
+          "initiating_event_reason": "Pump, coupling, motor or performance failure is closest to rotating_equipment, 0.1/yr. Assess the stopped/lost-delivery branch here; a direct mechanical rupture or seal release requires its own release scenario.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level inlet isolation.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Independent of a pump mechanical failure and effective against overfill. W6 records an auditable function; retain one credit pending SIL classification."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and operator intervention.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The supplied alarm shares measurement with IS-09. W6's differently tagged alarm does not establish an independent alarm path or validated response for this installation."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10"
+              ],
+              "description": "Low-low level pump trip.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": true,
+              "reason": "Shares LT-0102 with the high-level function and acts in the wrong direction for rising inventory. Stopping an already stopped pump does not prevent overfill."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "Manual emergency inlet isolation.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares the credited inlet final element and has no independent alarm-response basis."
+            },
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Minimum-flow recycle.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Cannot remove inventory or provide delivery when the pumps are stopped."
+            }
+          ],
+          "other_safeguards": [
+            "FT/FI/FY-0101, level indicators and valve-position indications provide monitoring only.",
+            "The standby pump improves availability, but automatic start, independent utilities and successful demand performance are not established.",
+            "PVV-0102 and EH-0101 are not liquid-overfill prevention layers."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new FT-0103",
+                "new FSL-0103",
+                "new SIS-0103",
+                "new UV-0103-IN",
+                "new pump trip devices"
+              ],
+              "description": "Apply the independent SIL 2 low-delivery-flow shutdown specified for C04.",
+              "ipl_type": "sif_sil2",
+              "rationale": "Loss of HPU delivery closes the separate inlet valve before tank overfill. Use independent power, sensing, logic and inlet actuation so the initiating pump failure cannot disable isolation. This is the same proposed installation as C04, not a second layer. No safe, adequately sized passive overflow destination is established."
+            }
+          ],
+          "reference_row": "W6",
+          "verdict": "One existing credit gives 0.01/yr, F-2/C-4, risk II. Adding the independent SIL 2 shutdown gives 0.0001/yr, F-4, risk III; merely assigning SIL 1 to IS-09 would not close the gap."
+        },
+        {
+          "cause_id": "FLOW-NL-C06",
+          "severity": 4,
+          "severity_reason": "Blocked delivery can cause pump heating, seal leakage and local fire. Continued receipt with no net withdrawal can additionally overfill the tank, giving the governing C-4 pool-fire consequence; immediate pressure integrity also requires checking against maximum pump shutoff head and HPU backpressure.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "Use discharge-valve failure/restriction at 0.1/yr as the closest conservative entry for the credible blocked-delivery branch. Manual errors, fixed blockage and downstream pressure-control failures should be separated when their actual mechanisms are established.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Continuous minimum-flow recycle, nominally 8.6 m3/h.",
+              "ipl_type": "restriction_orifice",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Potentially protects against deadhead heating, but minimum required pump flow, available differential pressure, service cleanliness and inspection evidence are not supplied. It neither limits shutoff pressure nor prevents tank overfill; no credit is taken."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high level inlet isolation.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Independent of discharge blockage and effective against the overfill branch. W6 supports one BPCS credit."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares measurement with IS-09; separate response reliability is not established."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10"
+              ],
+              "description": "Low-low tank level pump trip.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": true,
+              "reason": "Shares the level measurement with IS-09 and does not detect blocked discharge at normal or rising tank level."
+            },
+            {
+              "tags": [
+                "PSV-0101"
+              ],
+              "description": "Thermal relief valve.",
+              "ipl_type": "relief_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "W4 supports thermal-relief duty only. Location, connection and capacity do not establish protection of the pump discharge against full pump flow or HPU backpressure."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28"
+              ],
+              "description": "Manual emergency shutdown.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares existing shutdown equipment and lacks an independent pressure/flow alarm with validated operator response."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101A/B are local gauges, not pressure-trip layers.",
+            "FT/FI/FY-0101 have no established low-flow alarm or automatic shutdown.",
+            "Discharge check valves do not protect against forward-flow blockage or deadhead pressure.",
+            "Confirm discharge-system pressure rating against maximum shutoff head and credible HPU pressure; W2's upstream-line rating does not establish this."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new FT-0103",
+                "new FSL-0103",
+                "new SIS-0103",
+                "new UV-0103-IN",
+                "new pump trip devices"
+              ],
+              "description": "Apply the independent SIL 2 low-delivery-flow shutdown specified for C04.",
+              "ipl_type": "sif_sil2",
+              "rationale": "Measure HPU delivery downstream of the recycle takeoff. On inadequate delivery, trip the pumps before damaging low-flow heating and independently stop incoming naphtha before overfill. Validate response against pump damage time and the full restriction range; do not credit this trip against an instantaneous pressure challenge exceeding equipment rating."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "The proposed SIL 2 function gives risk III for both the C-3 pump-heating branch and, with IS-09, the C-4 overfill branch. Closure remains conditional on demonstrating pressure containment at maximum credible pressure; otherwise a separately sized discharge relief layer is required before protection can be declared sufficient."
+        },
+        {
+          "cause_id": "FLOW-NL-C07",
+          "severity": 4,
+          "severity_reason": "Excessive recycle reduces net withdrawal. If receipt continues above net HPU delivery, tank inventory can ultimately rise to overfill and a potentially fatal pool fire, C-4; reduced HPU feed alone does not establish a separate severe safety consequence.",
+          "initiating_event": "fixed_equipment",
+          "initiating_event_reason": "Provisionally use fixed-equipment hydraulic failure of the recycle restriction, 0.01/yr, for a physical change producing excessive recycle. RO-0101 has no opening actuator: a permanently oversized orifice or an ordinary hydraulic operating point is a design/operability issue, not a random valve-opening event, and requires confirmation before accepting this frequency.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "RO-0101"
+              ],
+              "description": "Fixed recycle-flow restriction.",
+              "ipl_type": "restriction_orifice",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The restriction or its hydraulic performance is the initiating cause; it cannot also protect against its own excessive recycle."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LSHH-0102",
+                "IS-09",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "High-high tank level closes the inlet.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "Independent of recycle hydraulics and effective against resulting overfill. W6 supports one auditable BPCS credit."
+            },
+            {
+              "tags": [
+                "LT-0102",
+                "LAH-0102"
+              ],
+              "description": "High-level alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares measurement with IS-09; independent alarm response is not established."
+            },
+            {
+              "tags": [
+                "HS-0101A",
+                "HS-0101B",
+                "IS-28",
+                "UY-0101",
+                "UV-0102-IN"
+              ],
+              "description": "Manual emergency inlet isolation.",
+              "ipl_type": "operator_response",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Shares the credited inlet final element and lacks a separately validated alarm-response function."
+            }
+          ],
+          "other_safeguards": [
+            "FT/FI/FY-0101 show reduced HPU delivery but have no demonstrated protective alarm or trip.",
+            "LT-0101 and level indicators support inventory monitoring.",
+            "Verify pump curves and the RO-0101 hydraulic calculation across minimum HPU pressure and maximum pump head; do not assume a fixed orifice can fail open like a valve.",
+            "The SIL 2 low-delivery shutdown proposed for C04-C06 may also cover this cause if its setpoint detects the relevant reduced-flow range."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "LT-0101",
+                "new LAH-0101",
+                "V-100T-IN-ISO"
+              ],
+              "description": "Restore an independent high-level alarm and operator inlet-isolation response.",
+              "ipl_type": "operator_response",
+              "rationale": "Use LT-0101 and an alarm path independent of LT-0102/IS-09. Validate safe manual closure of V-100T-IN-ISO before overfill, without relying on UV-0102-IN. Testing, training and response verification restore one credit against the rising-inventory hazard; this is the minimum standalone improvement for this cause."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Using the provisional 0.01/yr initiating frequency, IS-09 alone gives 0.001/yr, F-3/C-4, risk II; the independent alarm response gives 0.0001/yr, F-4, risk III. This conclusion requires confirmation of the initiating mechanism and frequency; the shared SIL 2 project may make the additional alarm credit unnecessary if its coverage is demonstrated."
+        }
+      ]
+    },
+    "Low Pressure": {
+      "generated_at": "2026-10-21T22:16:51+00:00",
+      "seconds": 143.0,
+      "model": "gpt-6.1-sol",
+      "causes": [
+        {
+          "cause_id": "PRESS-LOW-C01",
+          "severity": 4,
+          "severity_reason": "Without safeguards, continued withdrawal following loss of nitrogen can cause vacuum collapse, naphtha release and a potentially fatal pool fire. Air ingress also introduces a separate loss-of-inerting/fire pathway; multiple fatalities are not established by the supplied information.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "PCV-0101 failing closed is a Table B1 valve failure, 0.1/yr. This represents the stated alternative causes provisionally; nitrogen utility loss and line blockage should be separated if their frequencies or common-cause dependencies differ.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Normal nitrogen pressure control.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "The valve or its nitrogen supply is the initiating failure; the failed function cannot protect against itself."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "W7 supports two credits for the mechanical-vacuum consequence, subject to capacity and set-point verification. However, atmospheric vacuum relief admits air and does not protect against the complete stated loss-of-inerting/fire pathway; no credit is taken against that governing pathway."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10",
+                "100P-01A",
+                "100P-01B",
+                "UV-0102-OUT"
+              ],
+              "description": "Low-low level pump shutdown.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Vacuum or air ingress can develop at normal liquid level, well before LSLL operates. No applicable pressure-protection proof-test basis is supplied."
+            },
+            {
+              "tags": [
+                "PCV-0102"
+              ],
+              "description": "Normal out-breathing control.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Closing the out-breathing path does not replace withdrawn liquid volume or restore nitrogen. Scenario-specific protection and testing are not established."
+            },
+            {
+              "tags": [
+                "TAL-0101"
+              ],
+              "description": "Low-temperature alarm and possible operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Nitrogen failure need not produce low temperature; no relevant response procedure or available response time is demonstrated."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No vacuum-opening capability is specified, and an atmospheric opening would not maintain inerting."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 and TI-0101 provide indication only.",
+            "The internal floating roof reduces vapor losses but is not demonstrated as an independent inerting or vacuum-protection IPL.",
+            "HS-0101A/B and IS-28 provide manual emergency isolation, but no independent alarm, response-time demonstration or restoration of inerting is specified."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PT-0103",
+                "new OAT-0103",
+                "new SIS-0103",
+                "new XV-0103-VENT",
+                "new XV-0103-N2",
+                "new N2-0103-RESERVE",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Provide one SIL 3 tank inerting/vacuum-protection SIF: low pressure or unsafe oxygen concentration stops withdrawal, isolates the normal vent through a separate valve and admits emergency nitrogen from an independent reserve.",
+              "ipl_type": "sif_sil3",
+              "rationale": "For the complete vacuum/air-ingress pathway, no existing IPL passes all criteria: 0.1/yr is F-1/C-4, rank I. Three credits give 0.0001/yr, F-4/C-4, rank III. Use sensing, logic, final elements, utilities and nitrogen inventory independent of PCV-0101 and the normal nitrogen supply; validate response before vacuum damage or an unsafe oxygen concentration. A full-vacuum tank rating alone would not address loss of inerting."
+            }
+          ],
+          "reference_row": "W7",
+          "verdict": "Existing protection addresses mechanical vacuum damage but is not complete for the stated air-ingress/fire pathway; W7's proposed pressure alarm alone does not establish protection of that pathway. The proposed SIL 3 function achieves rank III only after its emergency-nitrogen capacity, response time, independence and proof-testing are demonstrated."
+        },
+        {
+          "cause_id": "PRESS-LOW-C02",
+          "severity": 4,
+          "severity_reason": "Loss of positive-pressure blanketing can permit air ingress and a potentially fatal tank fire if nitrogen replenishment cannot sustain inert conditions. A vent open to atmosphere alone does not establish a deep-vacuum collapse mechanism.",
+          "initiating_event": "valve",
+          "initiating_event_reason": "PCV-0102 stuck open is a Table B1 valve failure, 0.1/yr. Confirm by hydraulic analysis that this single failure can defeat normal nitrogen make-up; otherwise the hazardous sequence requires an additional failure and should be excluded as double jeopardy.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0102"
+              ],
+              "description": "Normal out-breathing control.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "This is the initiating failed valve and cannot be credited."
+            },
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Nitrogen make-up pressure control.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Potentially protective, but capacity to maintain positive pressure against a fully open PCV-0102 and the independent control/test arrangements are not demonstrated. No credit is taken pending verification."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "The worksheet identifies an auditable relief layer, but it does not prevent oxygen ingress or restore inerting. Its two-credit vacuum benefit is not applicable to the governing fire pathway."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10",
+                "100P-01A",
+                "100P-01B",
+                "UV-0102-OUT"
+              ],
+              "description": "Low-low level pump shutdown.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Loss of blanketing can occur at any liquid level; low-low level is not a timely initiating signal for this protection."
+            },
+            {
+              "tags": [
+                "TAL-0101"
+              ],
+              "description": "Low-temperature alarm.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "A stuck-open vent need not create a low-temperature alarm. No applicable operator action or response-time basis is supplied."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Emergency outward venting does not prevent air ingress through the failed-open normal vent."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 and TI-0101 are monitoring instruments, not automatic protection.",
+            "AC-0101 is vapor treatment; no flame-arresting or inerting function is established.",
+            "Manual IS-28 does not independently close the failed-open vent or restore inerting."
+          ],
+          "proposed_ipls": [
+            {
+              "tags": [
+                "new PT-0103",
+                "new OAT-0103",
+                "new SIS-0103",
+                "new XV-0103-VENT",
+                "new XV-0103-N2",
+                "new N2-0103-RESERVE",
+                "100P-01A",
+                "100P-01B"
+              ],
+              "description": "Use the same proposed SIL 3 inerting/vacuum-protection function identified for PRESS-LOW-C01, with a separate shutdown valve capable of isolating a failed-open PCV-0102.",
+              "ipl_type": "sif_sil3",
+              "rationale": "With no demonstrated existing credit, 0.1/yr gives F-1/C-4, rank I; one SIL 3 layer reduces this to 0.0001/yr, F-4/C-4, rank III. Verify vent-isolation speed, emergency nitrogen capacity and oxygen limits. This is one shared project recommendation, not an additional independent layer on top of the C01 proposal; if PCV-0101 is subsequently validated for one credit, reassess whether SIL 2 is sufficient."
+            }
+          ],
+          "reference_row": null,
+          "verdict": "Existing protection is not demonstrated sufficient for a credible single-failure loss-of-inerting scenario. The proposed function provides rank III protection subject to validation, but first confirm that PCV-0102 failing open can actually defeat normal nitrogen make-up."
+        },
+        {
+          "cause_id": "PRESS-LOW-C03",
+          "severity": 4,
+          "severity_reason": "Ignoring protection, withdrawal exceeding gas make-up can collapse the tank and release naphtha, with a potentially fatal pool fire.",
+          "initiating_event": "not_credible",
+          "initiating_event_reason": "As written, pump-out is an operating demand, not a defined initiating failure. Requiring both abnormal rapid withdrawal and a separate failure of adequate nitrogen make-up is double jeopardy; normal withdrawal with nitrogen failure is already C01. Reopen this cause if a single credible overspeed, operating error or demonstrated make-up undersizing is identified.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Nitrogen make-up during withdrawal.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Insufficient make-up is part of the bundled cause; it cannot simultaneously be treated as an independent credited layer. Maximum withdrawal capacity is not established."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Mechanical vacuum relief.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": false,
+              "auditable": true,
+              "reason": "Potentially effective against mechanical vacuum if sized for maximum simultaneous pump-out, but that capacity is not supplied and it does not preserve inerting. No LOPA credit is required for this excluded cause."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10",
+                "100P-01A",
+                "100P-01B",
+                "UV-0102-OUT"
+              ],
+              "description": "Low-low level pump shutdown.",
+              "ipl_type": "bpcs",
+              "independent": false,
+              "effective": false,
+              "auditable": false,
+              "reason": "Vacuum can occur before low-low level; independence also depends on the undefined withdrawal initiator and shared pump final elements."
+            },
+            {
+              "tags": [
+                "PCV-0102"
+              ],
+              "description": "Normal out-breathing control.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Closing an outward vent cannot supply the replacement gas required during pump-out."
+            },
+            {
+              "tags": [
+                "TAL-0101"
+              ],
+              "description": "Low-temperature alarm.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Rapid withdrawal need not produce a timely low-temperature alarm."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No vacuum-relief duty is established."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101, TI-0101 and FT/FI-0101 provide monitoring without a specified low-pressure or high-withdrawal protective action.",
+            "Check maximum simultaneous operation of 100P-01A/B, nitrogen capacity and vacuum-relief capacity as a design verification."
+          ],
+          "proposed_ipls": [],
+          "reference_row": null,
+          "verdict": "No additional IPL is assigned to this undefined double-jeopardy cause. Close it only after confirming that normal maximum pump-out is a covered design demand; any identified single initiating failure requires a separate LOPA."
+        },
+        {
+          "cause_id": "PRESS-LOW-C04",
+          "severity": 4,
+          "severity_reason": "Unrelieved condensation can cause vacuum collapse and naphtha loss of containment, with a potentially fatal pool fire; severity is assessed before safeguards despite exclusion of the initiating event.",
+          "initiating_event": "not_credible",
+          "initiating_event_reason": "No process-induced cooling failure is identified, so the stated temperature decrease is treated as natural ambient cooling. The supplied rule excludes natural events from initiating-event LOPA; W10 does not identify a Table B1 failure supporting its assigned frequency.",
+          "existing_ipls": [
+            {
+              "tags": [
+                "PCV-0101"
+              ],
+              "description": "Nitrogen make-up during thermal contraction.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Potentially protective, but maximum condensation duty and the independent testing basis are not supplied."
+            },
+            {
+              "tags": [
+                "PVV-0102"
+              ],
+              "description": "Tank vacuum relief for thermal contraction.",
+              "ipl_type": "breather_valve",
+              "independent": true,
+              "effective": true,
+              "auditable": true,
+              "reason": "W10 explicitly accepts this layer for mechanical vacuum protection. Retain that assessment subject to verification of condensation capacity, opening pressure and pressure drop within the -0.06 barg design limit; it is not an inerting layer."
+            },
+            {
+              "tags": [
+                "LSLL-0102",
+                "IS-10"
+              ],
+              "description": "Low-low level shutdown.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "Condensation can occur at any liquid level and continue after pump shutdown."
+            },
+            {
+              "tags": [
+                "PCV-0102"
+              ],
+              "description": "Normal out-breathing control.",
+              "ipl_type": "bpcs",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "It does not replace condensed vapor volume."
+            },
+            {
+              "tags": [
+                "TAL-0101"
+              ],
+              "description": "Low-temperature alarm and operator response.",
+              "ipl_type": "operator_response",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "The alarm threshold, relationship to vapor-space cooling, corrective action and response time are not established."
+            },
+            {
+              "tags": [
+                "EH-0101"
+              ],
+              "description": "Emergency vent hatch.",
+              "ipl_type": "emergency_vent_hatch",
+              "independent": true,
+              "effective": false,
+              "auditable": false,
+              "reason": "No vacuum-opening function is specified."
+            }
+          ],
+          "other_safeguards": [
+            "PG-0101 and TI-0101 provide indication only.",
+            "Natural-event exclusion from LOPA does not remove the requirement to design in-breathing capacity for the applicable thermal-contraction and condensation duties."
+          ],
+          "proposed_ipls": [],
+          "reference_row": "W10",
+          "verdict": "No additional IPL is required under the specified natural-event exclusion. Mechanical protection remains conditional on verified thermal in-breathing capacity; a process-induced cooling failure, if identified, must be assessed separately."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "source": "HAZOP Worksheet_Naphtha Tank and Transfer Pump.xlsx",
+  "rows": [
+    {
+      "id": "W1",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "Naphtha inlet to the tank is blocked by UV-0101 inadvertently closed. Loss of feed to the Naphtha Tank with a continuous flow to the HPU.",
+      "consequence": "This results in loss of liquid level in the Naphtha Tank with continuous Naphtha pump running. Due to 5 inventory provision, loss of production at the HPU is not anticipated, but the worst case is pump cavitation, loss of containment at the pump seal, and fire scenarios.",
+      "S": 3,
+      "L": 1,
+      "R": 2,
+      "ipls": [
+        {
+          "text": "LAL-0101A and operator intervention (-1)",
+          "credit": 1
+        },
+        {
+          "text": "Interlock IS-10 : LSLL-0102A to stop the Naphtha Pumps (-1)",
+          "credit": 1
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 3,
+      "L_after": 3,
+      "R_after": 3,
+      "recommendation": "1) SIF -01 : SIL Classification of IS-10 for LSLL-0102A.",
+      "comment": ""
+    },
+    {
+      "id": "W2",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "Naphtha inlet to the tank is blocked by UV-0101 inadvertently closed. Loss of feed to the Naphtha Tank with a continuous flow to the HPU.",
+      "consequence": "Blocked outlet case from the exitsing process unit to the Naphtha Tank. No loss of containment due to design pressure of transferline can withstand the unstream pump shut-off pressure at 150#. No safety issue.",
+      "S": null,
+      "L": null,
+      "R": null,
+      "ipls": [],
+      "meets_ipl_criteria": {
+        "independent": "",
+        "effective": "",
+        "auditable": ""
+      },
+      "safeguards": "",
+      "S_after": null,
+      "L_after": null,
+      "R_after": null,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W3",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "Naphtha outlet to the Naphtha Transfer pump blocked by UV-0102 inadvertently closed.",
+      "consequence": "Loss of naphtha to the Naphtha Transfer pump (100P-01A/B) results in pump cavitation, loss of containment at the pump seal, and fire scenarios.",
+      "S": 3,
+      "L": 1,
+      "R": 2,
+      "ipls": [
+        {
+          "text": "Interlock IS-10 : Limit switch ZSC-0102 to stop the Naphtha Pumps (-1)",
+          "credit": 1
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 3,
+      "L_after": 2,
+      "R_after": 2,
+      "recommendation": "2) SIF -02 : SIL Classification of IS-10 for ZSC-1-12 to stop the Naphtha Pump.",
+      "comment": ""
+    },
+    {
+      "id": "W4",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "Naphtha outlet to the Naphtha Transfer pump blocked by UV-0102 inadvertently closed.",
+      "consequence": "Thermal expansion at some blocked in volume leading to pipe leak, loss of containment and fire.",
+      "S": 3,
+      "L": 1,
+      "R": 2,
+      "ipls": [
+        {
+          "text": "Thermal relief valve (PSV-0101) (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "",
+      "S_after": 3,
+      "L_after": 3,
+      "R_after": 3,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W5",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "The Naphtha Transfer pump inadvertently stops.",
+      "consequence": "This results in loss of feed to the HPU. Due to 5 inventory provision, loss of production at the HPU is not anticipated, but the worst case is pump cavitation, loss of containment at the pump seal, and fire scenarios.",
+      "S": null,
+      "L": null,
+      "R": null,
+      "ipls": [],
+      "meets_ipl_criteria": {
+        "independent": "",
+        "effective": "",
+        "auditable": ""
+      },
+      "safeguards": "",
+      "S_after": null,
+      "L_after": null,
+      "R_after": null,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W6",
+      "parameter": "Flow",
+      "deviation": "No/Less",
+      "cause": "The Naphtha Transfer pump inadvertently stops.",
+      "consequence": "Due to continuous feed of Naphtha to the tank, this results in liquid level built up until liquid overfillling, loss of containment, and possible pool fire.",
+      "S": 4,
+      "L": 1,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "LAH-0101A and operator intervention (-1)",
+          "credit": 1
+        },
+        {
+          "text": "Interlock IS-9 : LSHH-0102A to close UV-0101 (-1)",
+          "credit": 1
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 3,
+      "R_after": 2,
+      "recommendation": "3) SIF -03 : SIL Classification of IS-9 for LSHH-0102 to close UV-0101.",
+      "comment": ""
+    },
+    {
+      "id": "W7",
+      "parameter": "Pressure",
+      "deviation": "Low",
+      "cause": "PCV-0101 stuck closes resulting in no nitrogen blanketing supply.",
+      "consequence": "Possible tank underpressure in vacuum condition, loss of containment, and possible pool fire.",
+      "S": 4,
+      "L": 1,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "PVV-0102 (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 3,
+      "R_after": 2,
+      "recommendation": "4) Provide PAL on the Tank.",
+      "comment": ""
+    },
+    {
+      "id": "W8",
+      "parameter": "Pressure",
+      "deviation": "High",
+      "cause": "PCV-0102 stuck closes resulting overpressure in the tank.",
+      "consequence": "Overpressure inside the tank and tank's roof damage,possible tank pool fire.",
+      "S": 4,
+      "L": 1,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "PVV-0102 (-2)",
+          "credit": 2
+        },
+        {
+          "text": "EH0101 (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 5,
+      "R_after": 4,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W9",
+      "parameter": "Pressure",
+      "deviation": "High",
+      "cause": "The activated carbon at the vent line is blocked resulting in no nitrogen blanketing supply.",
+      "consequence": "Overpressure inside the tank and tank's roof damage,possible tank pool fire.",
+      "S": 4,
+      "L": 1,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "PVV-0102 (-2)",
+          "credit": 2
+        },
+        {
+          "text": "EH0101 (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 5,
+      "R_after": 4,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W10",
+      "parameter": "Temperature",
+      "deviation": "Low",
+      "cause": "Thermal contraction inside the tank.",
+      "consequence": "Possible tank underpressure in vacuum condition, loss of containment, and possible pool fire.",
+      "S": 4,
+      "L": 2,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "PVV-0102 (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 4,
+      "R_after": 3,
+      "recommendation": "",
+      "comment": ""
+    },
+    {
+      "id": "W11",
+      "parameter": "Temperature",
+      "deviation": "High",
+      "cause": "Thermal expanison inside the tank.",
+      "consequence": "Overpressure inside the tank and tank's roof damage,possible tank pool fire.",
+      "S": 4,
+      "L": 2,
+      "R": 1,
+      "ipls": [
+        {
+          "text": "PVV-0102 (-2)",
+          "credit": 2
+        },
+        {
+          "text": "EH0101 (-2)",
+          "credit": 2
+        }
+      ],
+      "meets_ipl_criteria": {
+        "independent": "Yes",
+        "effective": "Yes",
+        "auditable": "Yes"
+      },
+      "safeguards": "None",
+      "S_after": 4,
+      "L_after": 5,
+      "R_after": 4,
+      "recommendation": "",
+      "comment": ""
+    }
+  ]
+}
